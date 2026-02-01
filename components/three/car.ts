@@ -30,6 +30,5 @@ export function loadCar(scene: THREE.Scene): CarResult {
     undefined,
     (error) => console.error("Failed to load car model", error)
   );
-  console.log(wheels);
   return { car: carGroup, wheels };
 }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 export function createMountain(x: number, z: number, scale = 1): THREE.Mesh {
-  const height = Math.random() * 20;
+  const height = (Math.random() + 0.1) * 20;
   const geo = new THREE.ConeGeometry(50, height, 6);
   const mat = new THREE.MeshStandardMaterial({
     color: 0x556b2f,

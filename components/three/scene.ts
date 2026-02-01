@@ -28,11 +28,33 @@ export function initScene(container: HTMLElement) {
   controls.enableRotate = true;
   controls.minDistance = 1;
   controls.maxDistance = 200;
+  controls.maxPolarAngle = Math.PI / 2;
+
   const skyGeo = new THREE.SphereGeometry(500, 32, 32);
   const skyMat = new THREE.MeshBasicMaterial({
-    color: 0x87ceeb,
+    vertexColors: true,
     side: THREE.BackSide,
   });
+  const colors: number[] = [];
+  const position = skyGeo.attributes.position;
+
+  const topColor = new THREE.Color(0.25, 0.45, 0.85);
+  const midColor = new THREE.Color(0.9, 0.6, 0.5);
+  const bottomColor = new THREE.Color(1.0, 0.5, 0.25);
+
+  for (let i = 0; i < position.count; i++) {
+    const y = position.getY(i);
+    const t = THREE.MathUtils.clamp((y + 500) / 1000, 0, 1);
+    const color = new THREE.Color();
+    if (t > 0.1) {
+      color.lerpColors(midColor, topColor, (t - 0.6) / 0.4);
+    } else {
+      color.lerpColors(bottomColor, midColor, t / 0.6);
+    }
+    colors.push(color.r, color.g, color.b);
+  }
+
+  skyGeo.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
   const sky = new THREE.Mesh(skyGeo, skyMat);
   scene.add(sky);
 
@@ -55,8 +77,6 @@ export function initScene(container: HTMLElement) {
     mountains.push(createMountain(-far, z, scale));
   }
   mountains.forEach((m) => scene.add(m));
-
-  scene.fog = new THREE.Fog(0x87ceeb, 50, 400);
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
