@@ -25,8 +25,25 @@ export function initScene(container: HTMLElement) {
 
   const controls = new OrbitControls(camera, document.body);
   controls.enableRotate = true;
+  controls.minDistance = 1;
+  controls.maxDistance = 200;
+  const skyGeo = new THREE.SphereGeometry(500, 32, 32);
+  const skyMat = new THREE.MeshBasicMaterial({
+    color: 0x87ceeb,
+    side: THREE.BackSide,
+  });
+  const sky = new THREE.Mesh(skyGeo, skyMat);
+  scene.add(sky);
 
-  scene.background = new THREE.Color(0x87ceeb);
+  const groundGeo = new THREE.PlaneGeometry(1000, 1000);
+  const groundMat = new THREE.MeshStandardMaterial({
+    color: 0x4c7a3d,
+  });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -0.1;
+  ground.receiveShadow = true;
+  scene.add(ground);
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
