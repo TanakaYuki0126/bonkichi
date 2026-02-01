@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { createRoad } from "./road";
 import { loadCar } from "./car";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { createMountain } from "./mountain";
 export function initScene(container: HTMLElement) {
   const scene = new THREE.Scene();
 
@@ -12,7 +13,7 @@ export function initScene(container: HTMLElement) {
     1000
   );
 
-  camera.position.set(5, 2, 3);
+  camera.position.set(10, 5, 7);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -44,6 +45,18 @@ export function initScene(container: HTMLElement) {
   ground.position.y = -0.1;
   ground.receiveShadow = true;
   scene.add(ground);
+
+  const mountains: THREE.Mesh[] = [];
+  for (let i = 0; i < 20; i++) {
+    const z = (10 - i) * 80;
+    const scale = 1 + Math.random() * 2;
+    const far = (Math.random() + 0.7) * 120;
+    mountains.push(createMountain(far, z, scale));
+    mountains.push(createMountain(-far, z, scale));
+  }
+  mountains.forEach((m) => scene.add(m));
+
+  scene.fog = new THREE.Fog(0x87ceeb, 50, 400);
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
