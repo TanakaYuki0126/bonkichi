@@ -20,9 +20,8 @@ export function initScene(container: HTMLElement) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
-  const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(5, 10, 5);
-  scene.add(light);
+  const ambient = new THREE.AmbientLight(0xffc4a0, 0.4);
+  scene.add(ambient);
 
   const controls = new OrbitControls(camera, document.body);
   controls.enableRotate = true;
@@ -72,11 +71,17 @@ export function initScene(container: HTMLElement) {
   for (let i = 0; i < 20; i++) {
     const z = (10 - i) * 80;
     const scale = 1 + Math.random() * 2;
-    const far = (Math.random() + 0.7) * 120;
+    const far = (Math.random() + 0.8) * 200;
     mountains.push(createMountain(far, z, scale));
     mountains.push(createMountain(-far, z, scale));
   }
   mountains.forEach((m) => scene.add(m));
+
+  const sunLight = new THREE.DirectionalLight(0xffa060, 1.2);
+  sunLight.position.set(50, 30, -50);
+  sunLight.castShadow = true;
+  sunLight.position.y = 10;
+  scene.add(sunLight);
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
