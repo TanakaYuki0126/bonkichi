@@ -12,7 +12,7 @@ export function createRoad(scene: THREE.Scene) {
   const lines: THREE.Mesh[] = [];
   for (let i = 0; i < 200; i++) {
     const line = new THREE.Mesh(lineGeometry, lineMaterial);
-    line.position.y = 0.1;
+    line.position.y = 0.01;
     line.position.x = -2.5;
     line.position.z = -500;
     line.position.z = -i * 4;

@@ -16,7 +16,7 @@ export function animate({
   wheels,
   lines,
 }: Args) {
-  const speed = 0.2;
+  const speed = 0.1;
 
   function tick() {
     road.forEach((r) => {
@@ -34,7 +34,7 @@ export function animate({
     });
 
     wheels.forEach((w) => {
-      w.rotation.x += speed * 0.2;
+      w.rotation.x += speed * 0.4;
     });
 
     renderer.render(scene, camera);
