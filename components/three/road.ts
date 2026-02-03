@@ -7,11 +7,15 @@ export function createRoad(scene: THREE.Scene) {
   const road1 = new THREE.Mesh(geometry, material);
   const road2 = new THREE.Mesh(geometry, material);
 
+  road1.receiveShadow = true;
+  road2.receiveShadow = true;
+
   const lineGeometry = new THREE.BoxGeometry(0.15, 0.01, 1.5);
   const lineMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
   const lines: THREE.Mesh[] = [];
   for (let i = 0; i < 200; i++) {
     const line = new THREE.Mesh(lineGeometry, lineMaterial);
+    line.receiveShadow = true;
     line.position.y = 0.01;
     line.position.x = -2.5;
     line.position.z = -500;

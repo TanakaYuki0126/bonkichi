@@ -18,6 +18,8 @@ export function initScene(container: HTMLElement) {
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.shadowMap.enabled = true;
+  // renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
 
   const ambient = new THREE.AmbientLight(0xffc4a0, 0.4);
@@ -62,6 +64,7 @@ export function initScene(container: HTMLElement) {
     color: 0x4c7a3d,
   });
   const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.receiveShadow = true;
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.1;
   ground.receiveShadow = true;
@@ -78,9 +81,9 @@ export function initScene(container: HTMLElement) {
   mountains.forEach((m) => scene.add(m));
 
   const sunLight = new THREE.DirectionalLight(0xffa060, 1.2);
-  sunLight.position.set(50, 30, -50);
+  sunLight.position.set(50, 30, -40);
   sunLight.castShadow = true;
-  sunLight.position.y = 10;
+  sunLight.shadow.bias = -0.0005;
   scene.add(sunLight);
 
   const { road, roadLength, lines } = createRoad(scene);

@@ -13,5 +13,6 @@ export function createMountain(x: number, z: number, scale = 1): THREE.Mesh {
   mountain.position.set(x, 0, z);
   mountain.scale.set(scale, scale, scale);
   mountain.receiveShadow = true;
+  mountain.castShadow = true;
   return mountain;
 }
