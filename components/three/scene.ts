@@ -17,19 +17,21 @@ export function initScene(container: HTMLElement) {
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  // renderer.domElement.style.zIndex = "-1";
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.shadowMap.enabled = true;
   // renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
 
-  const ambient = new THREE.AmbientLight(0xffc4a0, 0.4);
+  const ambient = new THREE.AmbientLight(0xffc4a0, 0.5);
   scene.add(ambient);
 
-  const controls = new OrbitControls(camera, document.body);
+  const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableRotate = true;
   controls.minDistance = 1;
   controls.maxDistance = 200;
   controls.maxPolarAngle = Math.PI / 2;
+  controls.enableDamping = true;
 
   const skyGeo = new THREE.SphereGeometry(500, 32, 32);
   const skyMat = new THREE.MeshBasicMaterial({
@@ -80,7 +82,7 @@ export function initScene(container: HTMLElement) {
   }
   mountains.forEach((m) => scene.add(m));
 
-  const sunLight = new THREE.DirectionalLight(0xffa060, 1.2);
+  const sunLight = new THREE.DirectionalLight(0xffa060, 3);
   sunLight.position.set(50, 30, -40);
   sunLight.castShadow = true;
   sunLight.shadow.bias = -0.0005;
@@ -88,5 +90,5 @@ export function initScene(container: HTMLElement) {
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
-  return { scene, camera, renderer, road, roadLength, wheels, lines };
+  return { scene, camera, renderer, road, roadLength, wheels, lines, controls };
 }

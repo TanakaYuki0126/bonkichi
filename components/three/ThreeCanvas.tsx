@@ -9,16 +9,16 @@ export default function ThreeCanvas() {
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const { scene, camera, renderer, road, wheels, lines } = initScene(
-      containerRef.current
-    );
+    const { scene, camera, renderer, road, wheels, lines, controls } =
+      initScene(containerRef.current);
 
-    animate({ scene, camera, renderer, road, wheels, lines });
+    animate({ scene, camera, renderer, road, wheels, lines, controls });
 
     return () => {
       renderer.dispose();
+      controls.dispose();
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: "100vw", height: "100vh" }} />;
+  return <div ref={containerRef} className="fixed inset-0 -z-10" />;
 }

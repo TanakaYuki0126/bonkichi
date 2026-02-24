@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 interface Args {
   scene: THREE.Scene;
@@ -7,6 +8,7 @@ interface Args {
   road: THREE.Mesh[];
   lines: THREE.Mesh[];
   wheels: THREE.Object3D[];
+  controls: OrbitControls;
 }
 export function animate({
   scene,
@@ -15,6 +17,7 @@ export function animate({
   road,
   wheels,
   lines,
+  controls,
 }: Args) {
   const speed = 0.1;
 
@@ -36,6 +39,8 @@ export function animate({
     wheels.forEach((w) => {
       w.rotation.x += speed * 0.4;
     });
+
+    controls.update();
 
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
