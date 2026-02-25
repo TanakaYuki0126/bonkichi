@@ -16,12 +16,24 @@ export default function ThreeCanvas() {
 
     animate({ scene, camera, renderer, road, wheels, lines, controls });
 
+    //画面リサイズ対応
+    function handleResize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    }
+    window.addEventListener("resize", handleResize);
     // if (guiRef.current) return;
     // const gui = new GUI();
     // guiRef.current = gui;
     return () => {
       renderer.dispose();
       controls.dispose();
+      window.removeEventListener("resize", handleResize);
       // gui.destroy();
       // guiRef.current = null;
     };

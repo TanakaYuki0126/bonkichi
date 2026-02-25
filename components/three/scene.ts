@@ -197,5 +197,6 @@ export function initScene(container: HTMLElement) {
   //   controls.target.set(params.targetX, params.targetY, params.targetZ);
   //   controls.update();
   // }
+
   return { scene, camera, renderer, road, roadLength, wheels, lines, controls };
 }
