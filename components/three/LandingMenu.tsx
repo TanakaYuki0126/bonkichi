@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./LandingMenu.Link";
 
 export default function LandingMenu() {
   return (
@@ -10,52 +10,14 @@ export default function LandingMenu() {
           className="justify-center
           text-xl tracking-[0.3em] text-white text-center text-shadow-md"
         >
-          Small Cabin, Big Journey
+          small cabin, big journey
         </p>
       </div>
       <div className="fixed top-1/4 left-20 flex flex-col gap-5  pointer-events-none">
-        <Link
-          href="/blog"
-          className="text-white pointer-events-auto
-          text-md 
-          text-shadow-2xs
-font-light 
-tracking-[0.3em] 
-hover:tracking-[0.4em] 
-transition-all 
-duration-500
-          "
-        >
-          Blog / 日誌
-        </Link>
-        <Link
-          href="/blog"
-          className="text-white pointer-events-auto
-          text-md
-          text-shadow-2xs
-font-light 
-tracking-[0.3em] 
-hover:tracking-[0.4em] 
-transition-all 
-duration-500
-          "
-        >
-          Photograph / 写真
-        </Link>
-        <Link
-          href="/blog"
-          className="text-white pointer-events-auto
-          text-md
-          text-shadow-2xs
-font-light 
-tracking-[0.3em] 
-hover:tracking-[0.4em] 
-transition-all 
-duration-500
-          "
-        >
-          About / 紹介
-        </Link>
+        <Link href="/blog">about / 紹介</Link>
+        <Link href="/blog">diary / 日誌</Link>
+        <Link href="/blog">gallery / 写真</Link>
+        <Link href="/blog">items / アイテム</Link>
       </div>
     </div>
   );

@@ -3,6 +3,12 @@ import { createRoad } from "./road";
 import { loadCar } from "./car";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { createMountain } from "./mountain";
+import gsap from "gsap";
+import GUI from "lil-gui";
+
+function introPlayed() {
+  return Boolean(sessionStorage.getItem("introPlayed"));
+}
 export function initScene(container: HTMLElement) {
   const scene = new THREE.Scene();
 
@@ -13,14 +19,9 @@ export function initScene(container: HTMLElement) {
     1000
   );
 
-  camera.position.set(10, 5, 7);
-  camera.lookAt(new THREE.Vector3(0, 0, 0));
-
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  // renderer.domElement.style.zIndex = "-1";
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.shadowMap.enabled = true;
-  // renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
 
   const ambient = new THREE.AmbientLight(0xffc4a0, 0.5);
@@ -28,10 +29,20 @@ export function initScene(container: HTMLElement) {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableRotate = true;
+  controls.enablePan = false;
+  controls.target.set(0, 10, 0);
   controls.minDistance = 1;
   controls.maxDistance = 200;
   controls.maxPolarAngle = Math.PI / 2;
   controls.enableDamping = true;
+  function saveCamera() {
+    const data = {
+      position: camera.position.toArray(),
+      target: controls.target.toArray(),
+    };
+    sessionStorage.setItem("cameraState", JSON.stringify(data));
+  }
+  controls.addEventListener("change", saveCamera);
 
   const skyGeo = new THREE.SphereGeometry(500, 32, 32);
   const skyMat = new THREE.MeshBasicMaterial({
@@ -90,5 +101,88 @@ export function initScene(container: HTMLElement) {
 
   const { road, roadLength, lines } = createRoad(scene);
   const { wheels } = loadCar(scene);
+
+  function playIntro() {
+    //オープニングアニメーション
+    controls.enabled = false;
+    gsap.to("#introOverlay", {
+      opacity: 0,
+      duration: 2,
+      scale: 1.05,
+      delay: 3,
+      ease: "power2.out",
+      onComplete: () => {
+        document.getElementById("introOverlay")?.remove();
+      },
+    });
+    gsap.to(camera.position, {
+      x: 10,
+      y: 5,
+      z: 7,
+      duration: 5,
+      delay: 3,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        camera.lookAt(0, 0, 0);
+      },
+      onComplete: () => {
+        controls.enabled = true;
+      },
+    });
+    gsap.to(controls.target, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 5,
+      delay: 3,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        controls.update();
+      },
+    });
+  }
+
+  // if (introPlayed()) {
+  //   const saved = sessionStorage.getItem("cameraState");
+  //   if (saved) {
+  //     const data = JSON.parse(saved);
+  //     camera.position.fromArray(data.position);
+  //     controls.target.fromArray(data.target);
+  //     controls.update();
+  //   } else {
+  //     camera.position.set(10, 5, 7);
+  //   }
+  // } else {
+  //   camera.position.set(100, 10, 10);
+  // }
+
+  // if (!sessionStorage.getItem("introPlayed")) {
+  //   playIntro();
+  //   sessionStorage.setItem("introPlayed", "true");
+  // }
+  camera.position.set(-20, 8, -70);
+  playIntro();
+
+  const params = {
+    camX: 5,
+    camY: 4,
+    camZ: 10,
+    targetX: 0,
+    targetY: 0,
+    targetZ: 0,
+    duration: 2,
+  };
+  // const gui = new GUI();
+  // gui.add(params, "camX", -100, 100).onChange(updateCamera);
+  // gui.add(params, "camY", -100, 100).onChange(updateCamera);
+  // gui.add(params, "camZ", -100, 100).onChange(updateCamera);
+  // gui.add(params, "targetX", -100, 100).onChange(updateCamera);
+  // gui.add(params, "targetY", -100, 100).onChange(updateCamera);
+  // gui.add(params, "targetZ", -100, 100).onChange(updateCamera);
+  // function updateCamera() {
+  //   camera.position.set(params.camX, params.camY, params.camZ);
+  //   controls.target.set(params.targetX, params.targetY, params.targetZ);
+  //   controls.update();
+  // }
   return { scene, camera, renderer, road, roadLength, wheels, lines, controls };
 }
