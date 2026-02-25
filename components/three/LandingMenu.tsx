@@ -13,7 +13,7 @@ export default function LandingMenu() {
           small cabin, big journey
         </p>
       </div>
-      <div className="fixed top-1/4 left-20 flex flex-col gap-5  pointer-events-none">
+      <div className="fixed top-30 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
         <Link href="/blog">about / 紹介</Link>
         <Link href="/blog">diary / 日誌</Link>
         <Link href="/blog">gallery / 写真</Link>

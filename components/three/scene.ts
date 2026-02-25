@@ -155,24 +155,24 @@ export function initScene(container: HTMLElement) {
     });
   }
 
-  // if (introPlayed()) {
-  //   const saved = sessionStorage.getItem("cameraState");
-  //   if (saved) {
-  //     const data = JSON.parse(saved);
-  //     camera.position.fromArray(data.position);
-  //     controls.target.fromArray(data.target);
-  //     controls.update();
-  //   } else {
-  //     camera.position.set(10, 5, 7);
-  //   }
-  // } else {
-  //   camera.position.set(100, 10, 10);
-  // }
+  if (introPlayed()) {
+    const saved = sessionStorage.getItem("cameraState");
+    if (saved) {
+      const data = JSON.parse(saved);
+      camera.position.fromArray(data.position);
+      controls.target.fromArray(data.target);
+      controls.update();
+    } else {
+      camera.position.set(10, 5, 7);
+    }
+  } else {
+    camera.position.set(100, 10, 10);
+  }
 
-  // if (!sessionStorage.getItem("introPlayed")) {
-  //   playIntro();
-  //   sessionStorage.setItem("introPlayed", "true");
-  // }
+  if (!sessionStorage.getItem("introPlayed")) {
+    playIntro();
+    sessionStorage.setItem("introPlayed", "true");
+  }
   camera.position.set(-20, 8, -70);
   playIntro();
 
