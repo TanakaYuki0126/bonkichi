@@ -115,6 +115,19 @@ export function initScene(container: HTMLElement) {
         document.getElementById("introOverlay")?.remove();
       },
     });
+    gsap.fromTo(
+      "#landingMenu",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        delay: 8,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.set(".lp-links", { pointerEvents: "auto" });
+        },
+      }
+    );
     gsap.to(camera.position, {
       x: 10,
       y: 5,

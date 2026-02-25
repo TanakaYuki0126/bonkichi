@@ -9,8 +9,8 @@ export default function LandingLink({
 }) {
   return (
     <Link
-      href="/blog"
-      className="text-white pointer-events-auto
+      href={href}
+      className="lp-links text-white pointer-events-none
           text-md
           text-shadow-2xs
 font-light 

@@ -4,7 +4,7 @@ import Link from "./LandingMenu.Link";
 
 export default function LandingMenu() {
   return (
-    <div className="inset-0 pointer-events-none bg-amber-50">
+    <div id="landingMenu" className="inset-0 pointer-events-none bg-amber-50">
       <div className="fixed top-10 w-screen pointer-events-none">
         <p
           className="justify-center
