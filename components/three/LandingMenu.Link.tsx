@@ -10,7 +10,7 @@ export default function LandingLink({
   return (
     <Link
       href={href}
-      className="lp-links text-white pointer-events-none
+      className="lp-links text-white pointer-events-auto
           text-md
           text-shadow-2xs
 font-light 

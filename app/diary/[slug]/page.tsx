@@ -23,7 +23,7 @@ export default async function PostPage({
         <article className="prose mx-auto py-10">
           <MDXRemote source={post.content} />
         </article>
-        <Link href="/blog">back</Link>
+        <Link href="/diary">back</Link>
       </div>
     );
   } catch {

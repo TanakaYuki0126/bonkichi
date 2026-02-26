@@ -5,10 +5,8 @@ import ThreeCanvas from "@/components/three/ThreeCanvas";
 
 export default function Page() {
   return (
-    <>
-      <main className="relative">
-        <LandingMenu />
-      </main>
-    </>
+    <main>
+      <LandingMenu />
+    </main>
   );
 }

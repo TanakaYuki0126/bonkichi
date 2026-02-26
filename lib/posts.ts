@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const postsDirectory = path.join(process.cwd(), "content/blog");
+const postsDirectory = path.join(process.cwd(), "content/diary");
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
