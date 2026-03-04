@@ -18,9 +18,11 @@ export default async function diaryPage() {
           {allPosts.map((post) => (
             <li key={post.id}>
               <Link href={`/diary/${post.slug}`} className="text-white">
-                <p className=" text-gray-300">
-                  {new Date(post.createdAt).toLocaleDateString("ja-JP")}
-                </p>
+                {post.createdAt && (
+                  <p className=" text-gray-300">
+                    {new Date(post.createdAt).toLocaleDateString("ja-JP")}
+                  </p>
+                )}
                 <p className="text-md font-bold">{post.title}</p>
               </Link>
             </li>

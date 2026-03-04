@@ -15,7 +15,8 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, _req) {
+        if (!credentials) return null;
         if (!credentials?.email || !credentials?.password) return null;
         const result = await db
           .select()
@@ -29,7 +30,12 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
         if (!isValid) return null;
-        return user;
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role ?? "user",
+        };
       },
     }),
   ],

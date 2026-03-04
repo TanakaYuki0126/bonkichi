@@ -35,9 +35,12 @@ export default async function PostPage({
         <h1 className="text-3xl md:text-4xl font-bold text-gray-100 mt-10 mb-6 leading-tight">
           {post.title}
         </h1>
-        <p className="text-sm text-gray-100 mb-8">
-          {new Date(post.createdAt).toLocaleDateString("ja-JP")}
-        </p>
+        {post.createdAt && (
+          <p className="text-sm text-gray-100 mb-8">
+            {new Date(post.createdAt).toLocaleDateString("ja-JP")}
+          </p>
+        )}
+
         <div className="prose prose-gray max-w-none">
           <p className="whitespace-pre-line text-gray-100 leading-relaxed">
             {post.content}
