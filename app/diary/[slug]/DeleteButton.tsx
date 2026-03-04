@@ -2,10 +2,8 @@
 
 import { deletePost } from "@/app/actions/deletePost";
 import { useTransition } from "react";
-import { useSession } from "next-auth/react";
 
 export default function DeleteButton({ postId }: { postId: string }) {
-  const { data: session } = useSession();
   const [isPending, startTransition] = useTransition();
   const handleDelete = async () => {
     const confirmed = confirm("本当に削除しますか？");
@@ -14,7 +12,6 @@ export default function DeleteButton({ postId }: { postId: string }) {
       deletePost(postId);
     });
   };
-  if (session?.user?.role !== "admin") return null;
   return (
     <button
       onClick={handleDelete}
