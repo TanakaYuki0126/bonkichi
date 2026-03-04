@@ -45,7 +45,7 @@ export default async function PostPage({
           </p>
         </div>
         <div className="absolute top-5 right-5">
-          <AdminControls postId={post.id} />
+          {/* <AdminControls postId={post.id} /> */}
         </div>
       </article>
     </div>
