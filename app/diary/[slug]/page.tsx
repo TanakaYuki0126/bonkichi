@@ -1,23 +1,19 @@
 import { db } from "@/lib/db";
-import { getPostSlugs, getPostsBySlug } from "@/lib/posts";
 import { posts } from "@/lib/schema";
 import { and, eq } from "drizzle-orm";
-import { MDXRemote } from "next-mdx-remote-client/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-export async function generateStaticParams() {
-  const slugs = getPostSlugs();
-  return slugs.map((slug) => ({
-    slug: slug.replace(/\.mdx$/, ""),
-  }));
-}
+import DeleteButton from "./DeleteButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export default async function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === "admin";
   const { slug } = await params;
   const result = await db
     .select()
@@ -29,11 +25,28 @@ export default async function PostPage({
   if (!post) {
     notFound();
   }
+
   return (
-    <main>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      <Link href={"/diary"}>戻る</Link>
-    </main>
+    <div className="min-h-screen  py-12 px-4">
+      <article className="max-w-3xl mx-auto p-8 md:p-12 relative">
+        <Link href={"/diary"} className="text-sm text-gray-200">
+          一覧へ戻る
+        </Link>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-100 mt-10 mb-6 leading-tight">
+          {post.title}
+        </h1>
+        <p className="text-sm text-gray-100 mb-8">
+          {new Date(post.createdAt).toLocaleDateString("ja-JP")}
+        </p>
+        <div className="prose prose-gray max-w-none">
+          <p className="whitespace-pre-line text-gray-100 leading-relaxed">
+            {post.content}
+          </p>
+        </div>
+        <div className="absolute top-5 right-5">
+          {isAdmin && <DeleteButton postId={post.id} />}
+        </div>
+      </article>
+    </div>
   );
 }

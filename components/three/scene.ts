@@ -105,6 +105,7 @@ export function initScene(container: HTMLElement) {
   function playIntro() {
     //オープニングアニメーション
     gsap.set(".lp-links", { pointerEvents: "none" });
+    gsap.set(".title", { pointerEvents: "none" });
     controls.enabled = false;
     gsap.to("#introOverlay", {
       opacity: 0,
@@ -126,6 +127,7 @@ export function initScene(container: HTMLElement) {
         ease: "power2.out",
         onComplete: () => {
           gsap.set(".lp-links", { pointerEvents: "auto" });
+          gsap.set(".title", { pointerEvents: "auto" });
         },
       }
     );
