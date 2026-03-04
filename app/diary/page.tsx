@@ -3,7 +3,7 @@ import { posts } from "@/lib/schema";
 import { desc, eq } from "drizzle-orm";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function diaryPage() {
   const allPosts = await db

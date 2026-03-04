@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export default function NewPostForm() {
   const router = useRouter();
@@ -33,6 +34,8 @@ export default function NewPostForm() {
     if (res.ok) {
       alert("投稿成功☝️");
       router.push(`/diary/${form.slug}`);
+      revalidatePath("/diary");
+      revalidatePath(`/diary/${form.slug}`);
     }
   };
 

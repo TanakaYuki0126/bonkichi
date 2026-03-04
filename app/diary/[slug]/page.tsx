@@ -7,6 +7,8 @@ import DeleteButton from "./DeleteButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
+export const revalidate = 60;
+
 export default async function PostPage({
   params,
 }: {
