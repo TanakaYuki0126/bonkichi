@@ -1,7 +1,6 @@
 "use client";
 
 import { deletePost } from "@/app/actions/deletePost";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 export default function DeleteButton({ postId }: { postId: string }) {

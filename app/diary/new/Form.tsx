@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createPost } from "@/app/actions/createPost";
 import { useFormStatus } from "react-dom";
 
