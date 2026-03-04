@@ -4,8 +4,6 @@ import { and, eq } from "drizzle-orm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import DeleteButton from "./DeleteButton";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 
 export const revalidate = 60;
 
@@ -14,8 +12,6 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const session = await getServerSession(authOptions);
-  const isAdmin = session?.user?.role === "admin";
   const { slug } = await params;
   const result = await db
     .select()
@@ -49,7 +45,7 @@ export default async function PostPage({
           </p>
         </div>
         <div className="absolute top-5 right-5">
-          {isAdmin && <DeleteButton postId={post.id} />}
+          <DeleteButton postId={post.id} />
         </div>
       </article>
     </div>
