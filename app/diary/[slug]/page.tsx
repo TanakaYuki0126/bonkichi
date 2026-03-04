@@ -3,9 +3,7 @@ import { posts } from "@/lib/schema";
 import { and, eq } from "drizzle-orm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import AdminControls from "./AdminControls";
-
-// export const revalidate = 60;
+import DeleteButton from "./DeleteButton";
 
 export default async function PostPage({
   params,
@@ -45,7 +43,7 @@ export default async function PostPage({
           </p>
         </div>
         <div className="absolute top-5 right-5">
-          {/* <AdminControls postId={post.id} /> */}
+          <DeleteButton postId={post.id} />
         </div>
       </article>
     </div>
