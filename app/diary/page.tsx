@@ -3,16 +3,14 @@ import { posts } from "@/lib/schema";
 import { desc, eq } from "drizzle-orm";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function diaryPage() {
   const allPosts = await db
     .select()
     .from(posts)
     .where(eq(posts.status, "draft"))
     .orderBy(desc(posts.createdAt));
-
-  console.log(allPosts);
-  const allPosts_debug = await db.select().from(posts);
-  console.log(allPosts_debug);
 
   return (
     <div className="relative max-w-2xl mx-auto py-10">
