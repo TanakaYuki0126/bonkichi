@@ -1,0 +1,1 @@
+ALTER TABLE "posts" RENAME COLUMN "eyecatch_url" TO "eyecatch_file_name";

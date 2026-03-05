@@ -41,6 +41,12 @@ export default function NewPostForm() {
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              アイキャッチ画像
+            </label>
+            <input type="file" name="eyecatch" accept="image/*" />
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"

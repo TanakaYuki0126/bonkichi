@@ -14,6 +14,7 @@ export const posts = pgTable("posts", {
   title: text("title").notNull(),
   slug: text("slug").notNull().unique(),
   content: text("content").notNull(),
+  eyecatchFileName: text("eyecatch_file_name"),
   status: text("status").default("draft"),
   authorId: uuid("author_id").references(() => users.id),
   publishedAt: timestamp("published_at"),
