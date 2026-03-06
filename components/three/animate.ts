@@ -3,6 +3,8 @@ import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 let exitMode = false;
 
+let animationId: number;
+
 export function startExit() {
   exitMode = true;
 }
@@ -60,8 +62,9 @@ export function animate({
     controls.update();
 
     renderer.render(scene, camera);
-    requestAnimationFrame(tick);
+    animationId = requestAnimationFrame(tick);
   }
 
   tick();
+  return () => cancelAnimationFrame(animationId);
 }

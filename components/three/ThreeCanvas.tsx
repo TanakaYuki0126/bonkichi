@@ -14,7 +14,16 @@ export default function ThreeCanvas() {
     const { scene, camera, renderer, road, wheels, lines, controls, car } =
       initScene(containerRef.current);
 
-    animate({ scene, camera, renderer, road, wheels, lines, controls, car });
+    const stopAnimation = animate({
+      scene,
+      camera,
+      renderer,
+      road,
+      wheels,
+      lines,
+      controls,
+      car,
+    });
 
     //画面リサイズ対応
     function handleResize() {
@@ -28,6 +37,7 @@ export default function ThreeCanvas() {
     }
     window.addEventListener("resize", handleResize);
     return () => {
+      stopAnimation();
       renderer.dispose();
       controls.dispose();
       containerRef.current?.removeChild(renderer.domElement);
