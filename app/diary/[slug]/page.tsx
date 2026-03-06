@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import DeleteButton from "./DeleteButton";
 import { getSignedUrl } from "@/app/actions/getSignedUrl";
-import Image from "next/image";
+import FadeInImage from "./FadeInImage";
 
 export default async function PostPage({
   params,
@@ -42,15 +42,7 @@ export default async function PostPage({
             {new Date(post.createdAt).toLocaleDateString("ja-JP")}
           </p>
         )}
-        {eyecatchUrl && (
-          <Image
-            src={eyecatchUrl}
-            alt={post.title}
-            width={500}
-            height={500}
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
-        )}
+        {eyecatchUrl && <FadeInImage src={eyecatchUrl} alt={post.title} />}
 
         <div className="prose prose-gray max-w-none">
           <p className="whitespace-pre-line text-gray-700 leading-relaxed">
