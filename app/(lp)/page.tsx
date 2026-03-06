@@ -1,6 +1,7 @@
 "use client";
 
 import PageFade from "@/components/PageFade";
+import { startExit } from "@/components/three/animate";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -36,10 +37,13 @@ export default function Page() {
   const [fade, setFade] = useState(false);
   const handleClick = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    setFade(true);
+    startExit();
+    setTimeout(() => {
+      setFade(true);
+    }, 2000);
     setTimeout(() => {
       router.push(href);
-    }, 500);
+    }, 2500);
   };
   return (
     <main>

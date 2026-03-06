@@ -100,7 +100,7 @@ export function initScene(container: HTMLElement) {
   scene.add(sunLight);
 
   const { road, roadLength, lines } = createRoad(scene);
-  const { wheels } = loadCar(scene);
+  const { car, wheels } = loadCar(scene);
 
   function playIntro() {
     //オープニングアニメーション
@@ -173,33 +173,21 @@ export function initScene(container: HTMLElement) {
   }
 
   if (!sessionStorage.getItem("introPlayed")) {
-    playIntro();
+    // playIntro();
     sessionStorage.setItem("introPlayed", "true");
   }
   camera.position.set(-20, 8, -70);
   playIntro();
 
-  const params = {
-    camX: 5,
-    camY: 4,
-    camZ: 10,
-    targetX: 0,
-    targetY: 0,
-    targetZ: 0,
-    duration: 2,
+  return {
+    scene,
+    car,
+    camera,
+    renderer,
+    road,
+    roadLength,
+    wheels,
+    lines,
+    controls,
   };
-  // const gui = new GUI();
-  // gui.add(params, "camX", -100, 100).onChange(updateCamera);
-  // gui.add(params, "camY", -100, 100).onChange(updateCamera);
-  // gui.add(params, "camZ", -100, 100).onChange(updateCamera);
-  // gui.add(params, "targetX", -100, 100).onChange(updateCamera);
-  // gui.add(params, "targetY", -100, 100).onChange(updateCamera);
-  // gui.add(params, "targetZ", -100, 100).onChange(updateCamera);
-  // function updateCamera() {
-  //   camera.position.set(params.camX, params.camY, params.camZ);
-  //   controls.target.set(params.targetX, params.targetY, params.targetZ);
-  //   controls.update();
-  // }
-
-  return { scene, camera, renderer, road, roadLength, wheels, lines, controls };
 }
