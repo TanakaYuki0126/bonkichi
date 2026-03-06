@@ -14,5 +14,18 @@ export function createMountain(x: number, z: number, scale = 1): THREE.Mesh {
   mountain.scale.set(scale, scale, scale);
   mountain.receiveShadow = true;
   mountain.castShadow = true;
+  mountain.rotation.y = Math.random() * Math.PI;
   return mountain;
+}
+
+export function createMountainGroup() {
+  const mountains = new THREE.Group();
+  for (let i = 0; i < 20; i++) {
+    const z = (10 - i) * 80;
+    const scale = 1 + Math.random() * 2;
+    const far = (Math.random() + 0.8) * 200;
+    mountains.add(createMountain(far, z, scale));
+    mountains.add(createMountain(-far, z, scale));
+  }
+  return mountains;
 }

@@ -11,8 +11,18 @@ export default function ThreeCanvas() {
   useEffect(() => {
     if (!containerRef.current) return;
     resetExit();
-    const { scene, camera, renderer, road, wheels, lines, controls, car } =
-      initScene(containerRef.current);
+    const {
+      scene,
+      camera,
+      renderer,
+      road,
+      wheels,
+      lines,
+      controls,
+      car,
+      mountainGroup1,
+      mountainGroup2,
+    } = initScene(containerRef.current);
 
     const stopAnimation = animate({
       scene,
@@ -23,6 +33,8 @@ export default function ThreeCanvas() {
       lines,
       controls,
       car,
+      mountainGroup1,
+      mountainGroup2,
     });
 
     //画面リサイズ対応

@@ -22,6 +22,8 @@ interface Args {
   wheels: THREE.Object3D[];
   controls: OrbitControls;
   car: THREE.Object3D;
+  mountainGroup1: THREE.Group;
+  mountainGroup2: THREE.Group;
 }
 
 export function animate({
@@ -33,6 +35,8 @@ export function animate({
   lines,
   controls,
   car,
+  mountainGroup1,
+  mountainGroup2,
 }: Args) {
   const speed = 0.1;
 
@@ -67,6 +71,19 @@ export function animate({
 
     car.position.y = bounce;
     car.rotation.z = tilt;
+
+    const groupLength = 1600;
+    const mountainSpeed = 0.02;
+
+    mountainGroup1.position.z -= mountainSpeed;
+    mountainGroup2.position.z -= mountainSpeed;
+
+    if (mountainGroup1.position.z < -groupLength) {
+      mountainGroup1.position.z = mountainGroup2.position.z + groupLength;
+    }
+    if (mountainGroup2.position.z < -groupLength) {
+      mountainGroup2.position.z = mountainGroup1.position.z + groupLength;
+    }
 
     controls.update();
 

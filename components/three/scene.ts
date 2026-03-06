@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { createRoad } from "./road";
 import { loadCar } from "./car";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { createMountain } from "./mountain";
+import { createMountain, createMountainGroup } from "./mountain";
 import gsap from "gsap";
 import GUI from "lil-gui";
 
@@ -83,15 +83,13 @@ export function initScene(container: HTMLElement) {
   ground.receiveShadow = true;
   scene.add(ground);
 
-  const mountains: THREE.Mesh[] = [];
-  for (let i = 0; i < 20; i++) {
-    const z = (10 - i) * 80;
-    const scale = 1 + Math.random() * 2;
-    const far = (Math.random() + 0.8) * 200;
-    mountains.push(createMountain(far, z, scale));
-    mountains.push(createMountain(-far, z, scale));
-  }
-  mountains.forEach((m) => scene.add(m));
+  const mountainGroup1 = createMountainGroup();
+  const mountainGroup2 = createMountainGroup();
+  const groupLength = 1600;
+  mountainGroup1.position.z = 0;
+  mountainGroup2.position.z = groupLength;
+  scene.add(mountainGroup1);
+  scene.add(mountainGroup2);
 
   const sunLight = new THREE.DirectionalLight(0xffa060, 3);
   sunLight.position.set(50, 30, -40);
@@ -189,5 +187,7 @@ export function initScene(container: HTMLElement) {
     wheels,
     lines,
     controls,
+    mountainGroup1,
+    mountainGroup2,
   };
 }
