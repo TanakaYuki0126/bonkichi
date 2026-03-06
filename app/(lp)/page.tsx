@@ -9,13 +9,15 @@ import { useState } from "react";
 function LandingLink({
   children,
   onClick,
+  href,
 }: {
   children: React.ReactNode;
   onClick: React.MouseEventHandler;
+  href: string;
 }) {
   return (
     <Link
-      href={"/"}
+      href={href}
       onClick={onClick}
       className="lp-links text-white pointer-events-auto
           text-md
@@ -58,15 +60,17 @@ export default function Page() {
             small cabin, big journey
           </Link>
         </div>
-        <div className="fixed top-30 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
-          <LandingLink onClick={handleClick("/about")}>
+        <div className="fixed top-3/4 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
+          <LandingLink href="/about" onClick={handleClick("/about")}>
             about / 紹介
           </LandingLink>
-          <LandingLink onClick={handleClick("diary")}>diary / 日誌</LandingLink>
-          <LandingLink onClick={handleClick("/gallery")}>
+          <LandingLink href="/diary" onClick={handleClick("diary")}>
+            diary / 日誌
+          </LandingLink>
+          <LandingLink href="/gallery" onClick={handleClick("/gallery")}>
             gallery / 写真
           </LandingLink>
-          <LandingLink onClick={handleClick("/contact")}>
+          <LandingLink href="/contact" onClick={handleClick("/contact")}>
             contact / 連絡
           </LandingLink>
         </div>
