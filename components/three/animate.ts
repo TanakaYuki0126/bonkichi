@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
+import { OrbitControls, SimplexNoise } from "three/examples/jsm/Addons.js";
 
 let exitMode = false;
 
@@ -36,7 +36,12 @@ export function animate({
 }: Args) {
   const speed = 0.1;
 
+  const noise = new SimplexNoise();
+  let t = 0;
   function tick() {
+    t += 0.02;
+    const bounce = noise.noise(t, 0) * 0.005;
+    const tilt = noise.noise(t, 1) * 0.005;
     if (exitMode) {
       car.position.z += speed * 2;
       camera.position.z -= speed * 2;
@@ -59,6 +64,10 @@ export function animate({
     wheels.forEach((w) => {
       w.rotation.x += speed * 0.4;
     });
+
+    car.position.y = bounce;
+    car.rotation.z = tilt;
+
     controls.update();
 
     renderer.render(scene, camera);
