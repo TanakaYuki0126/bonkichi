@@ -17,7 +17,7 @@ export async function createPost(formData: FormData) {
     const supabase = createClient();
     const fileName = `${Date.now()}-${eyecatch.name}`;
     const { error } = await supabase.storage
-      .from("diary-images")
+      .from("blog-images")
       .upload(fileName, eyecatch);
     if (error) throw error;
     eyecatchFileName = fileName;

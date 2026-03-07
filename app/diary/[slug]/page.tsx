@@ -4,7 +4,7 @@ import { and, eq } from "drizzle-orm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import DeleteButton from "./DeleteButton";
-import { getSignedUrl } from "@/app/actions/getSignedUrl";
+import { getImageUrl } from "@/app/actions/getImageUrl";
 import FadeInImage from "./FadeInImage";
 
 export default async function PostPage({
@@ -25,7 +25,7 @@ export default async function PostPage({
   }
   let eyecatchUrl: string | null = null;
   if (post.eyecatchFileName) {
-    eyecatchUrl = await getSignedUrl(post.eyecatchFileName);
+    eyecatchUrl = await getImageUrl(post.eyecatchFileName);
   }
 
   return (

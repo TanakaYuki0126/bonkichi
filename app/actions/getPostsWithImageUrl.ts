@@ -17,11 +17,11 @@ export async function getPostsWithImageUrls() {
     allPosts.map(async (post) => {
       let eyecatchUrl: string | null = null;
       if (post.eyecatchFileName) {
-        const { data, error } = await supabase.storage
-          .from("diary-images")
-          .createSignedUrl(post.eyecatchFileName, 60 * 60);
-        if (!error && data?.signedUrl) {
-          eyecatchUrl = data.signedUrl;
+        const { data } = await supabase.storage
+          .from("blog-images")
+          .getPublicUrl(post.eyecatchFileName);
+        if (data?.publicUrl) {
+          eyecatchUrl = data.publicUrl;
         }
       }
       return { ...post, eyecatchUrl };
