@@ -1,6 +1,4 @@
 import Header from "@/components/Header";
-import Link from "next/link";
-import NewPostFab from "./NewPostFab";
 export default function DiaryLayout({
   children,
 }: Readonly<{
@@ -10,7 +8,6 @@ export default function DiaryLayout({
     <div className="relative bg-white min-h-screen">
       <Header />
       {children}
-      <NewPostFab />
     </div>
   );
 }

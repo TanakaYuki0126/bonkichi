@@ -48,7 +48,7 @@ export default function Header() {
           <UnderlineLink href="/about">about / 紹介</UnderlineLink>
           <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
           <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
-          <UnderlineLink href="/gallery">contact / 連絡</UnderlineLink>
+          <UnderlineLink href="/contact">contact / 連絡</UnderlineLink>
           {session?.user ? (
             <button
               className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
