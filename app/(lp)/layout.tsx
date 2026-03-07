@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import ThreeCanvas from "@/components/three/ThreeCanvas";
 
-export const metadata: Metadata = {
-  title: "bonkichi",
-  description: "bonkichi",
-};
-
 export default function LpLayout({
   children,
 }: Readonly<{
