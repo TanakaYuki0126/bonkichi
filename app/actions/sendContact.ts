@@ -71,6 +71,13 @@ export async function sendContact(
     replyTo: rawData.email,
     text: `Name: ${rawData.name}\nEmail: ${rawData.email}\nmessage:${rawData.message}`,
   });
+
+  await resend.emails.send({
+    from: "ぼんきち <contact@mail.bonkichi.jp>",
+    to: rawData.email,
+    subject: "お問い合わせありがとうございました",
+    text: `${rawData.name}様\n\n\nこの度はお問い合わせいただきありがとうございます。\n内容確認後に返信いたします。\n\n\nお問い合わせ内容: \n${rawData.message}`,
+  });
   return {
     success: true,
     message: "お問い合わせを送信しました",
