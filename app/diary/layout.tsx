@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import NewPostFab from "./NewPostFab";
 
 export default function DiaryLayout({
@@ -8,7 +7,6 @@ export default function DiaryLayout({
 }>) {
   return (
     <div className="relative bg-white min-h-screen">
-      <Header />
       {children}
       <NewPostFab />
     </div>

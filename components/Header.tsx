@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "@/public/bonkichi.svg";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function UnderlineLink({
   href,
@@ -25,6 +26,8 @@ function UnderlineLink({
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { data: session } = useSession();
+  const pathname = usePathname();
+  if (pathname === "/") return;
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 ${

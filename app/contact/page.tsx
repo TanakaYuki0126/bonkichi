@@ -18,9 +18,9 @@ export default function ContactPage() {
   return (
     <>
       <PageFadeIn />
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 pt-20 pb-10">
-        <div className="w-full max-w-2xl bg-white  rounded-2xl shadow-lg p-8">
-          <h1 className="text-2xl font-bold mb-6 text-gray-800">
+      <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
+        <div className="w-full max-w-2xl p-8">
+          <h1 className="text-2xl mb-6 text-gray-700 text-center">
             Contact / 連絡
           </h1>
           {state?.message && (

@@ -9,7 +9,6 @@ export default function AboutLayout({
   return (
     <div>
       <PageFadeIn />
-      <Header />
       {children}
     </div>
   );

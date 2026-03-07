@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import PageFadeIn from "@/components/PageFadeIn";
 
 export default function AboutLayout({
@@ -9,7 +8,6 @@ export default function AboutLayout({
   return (
     <div>
       <PageFadeIn />
-      <Header />
       {children}
     </div>
   );
