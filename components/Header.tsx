@@ -2,6 +2,8 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "@/public/bonkichi.svg";
+import Image from "next/image";
 
 function UnderlineLink({
   href,
@@ -30,8 +32,17 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-700">
-        <Link href="/" className="text-lg hover:opacity-70 transition">
-          ぼんきち
+        <Link
+          href="/"
+          className="flex items-center text-lg hover:opacity-70 transition gap-1"
+        >
+          <Image
+            alt="logo"
+            width={50}
+            height={50}
+            src="/bonkichi.svg"
+            className="logo"
+          />
         </Link>
         <nav className="hidden items-center gap-6 text-sm md:flex">
           <UnderlineLink href="/about">about / 紹介</UnderlineLink>
