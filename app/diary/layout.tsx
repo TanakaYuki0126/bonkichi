@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import LandingMenu from "@/components/three/LandingMenu";
 export default function DiaryLayout({
   children,
 }: Readonly<{

@@ -1,5 +1,5 @@
 "use client";
-
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -22,6 +22,7 @@ function UnderlineLink({
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 ${
@@ -37,7 +38,21 @@ export default function Header() {
           <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
           <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
           <UnderlineLink href="/gallery">contact / 連絡</UnderlineLink>
-          <UnderlineLink href="/login">login / ログイン</UnderlineLink>
+          {session?.user ? (
+            <button
+              className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+              onClick={(e) => {
+                e.preventDefault();
+                signOut({ callbackUrl: "/diary" });
+              }}
+            >
+              logout from {session?.user?.name}
+            </button>
+          ) : (
+            <UnderlineLink href="/api/auth/signin">
+              login / ログイン
+            </UnderlineLink>
+          )}
         </nav>
         <button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>
           <div className="relative w-8 h-8">
@@ -68,7 +83,15 @@ export default function Header() {
         <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
         <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
         <UnderlineLink href="/gallery">contact / 連絡</UnderlineLink>
-        <UnderlineLink href="/login">login / ログイン</UnderlineLink>
+        {session?.user ? (
+          <UnderlineLink href="/api/auth/signin">
+            logout from {session?.user?.name}
+          </UnderlineLink>
+        ) : (
+          <UnderlineLink href="/api/auth/signin">
+            login / ログイン
+          </UnderlineLink>
+        )}
       </nav>
     </header>
   );
