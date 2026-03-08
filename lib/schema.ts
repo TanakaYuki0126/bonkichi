@@ -47,13 +47,19 @@ export const photoCategoryEnum = pgEnum("photo_category", [
 
 export const photos = pgTable("photos", {
   id: uuid("id").defaultRandom().primaryKey(),
-  url: text("url").notNull(),
+  fileName: text("file_name").notNull(),
   category: photoCategoryEnum("category").notNull(),
   title: text("title"),
   description: text("description"),
   width: integer("width"),
   height: integer("height"),
-  order: integer("order").default(0),
+  displayOrder: integer("display_order").default(0),
+  location: text("location"),
   takenAt: timestamp("taken_at"),
+  camera: text("camera"),
+  lens: text("lens"),
+  aperture: text("aperture"),
+  shutter: text("shutter"),
+  iso: text("iso"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

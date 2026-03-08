@@ -1,0 +1,1 @@
+ALTER TABLE "photos" RENAME COLUMN "order" TO "display_order";

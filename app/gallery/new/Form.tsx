@@ -1,10 +1,13 @@
 "use client";
 import { createPost } from "@/app/actions/createPost";
+import { uploadGalleryPhoto } from "@/app/actions/uploadGalleryPhoto";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-export default function NewPostForm() {
+export const categories = ["build", "exterior", "interior", "travel"] as const;
+
+export default function NewGalleryForm() {
   const { pending } = useFormStatus();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,44 +35,14 @@ export default function NewPostForm() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 pt-20 pb-10">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">新規投稿</h1>
-        <form action={createPost} className="space-y-6">
+        <h1 className="text-2xl font-bold mb-6 text-gray-800">画像を追加</h1>
+        <form action={uploadGalleryPhoto} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">
-              タイトル
+              画像
             </label>
             <input
-              type-="text"
-              name="title"
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              スラッジ
-            </label>
-            <input
-              name="slug"
-              required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              本文
-            </label>
-            <textarea
-              name="content"
-              required
-              className="w-full rounded-lg border h-80 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              アイキャッチ画像
-            </label>
-            <input
               ref={inputRef}
               className="hidden"
               type="file"
@@ -100,6 +73,64 @@ export default function NewPostForm() {
               </button>
             )}
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              カテゴリ
+            </label>
+            <select
+              name="category"
+              required
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            >
+              {categories.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              タイトル
+            </label>
+            <input
+              type-="text"
+              name="title"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              概要
+            </label>
+            <input
+              type-="text"
+              name="description"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              撮影場所
+            </label>
+            <input
+              type-="text"
+              name="location"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-2">
+              表示順
+            </label>
+            <input
+              type-="number"
+              name="order"
+              defaultValue={0}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            />
+          </div>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
