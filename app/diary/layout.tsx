@@ -1,4 +1,4 @@
-import NewPostFab from "./NewPostFab";
+import AdminFab from "./AdminFab";
 
 export default function DiaryLayout({
   children,
@@ -8,7 +8,7 @@ export default function DiaryLayout({
   return (
     <div className="relative bg-white min-h-screen">
       {children}
-      <NewPostFab />
+      <AdminFab>+ 新規投稿</AdminFab>
     </div>
   );
 }

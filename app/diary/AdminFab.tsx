@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NewPostFab() {
+export default function AdminFab({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
   const pathname = usePathname();
   if (!session?.user) return;
@@ -14,7 +14,7 @@ export default function NewPostFab() {
       href="/diary/new"
       className="fixed bottom-10 right-10 bg-lime-600 text-white p-5 rounded-full shadow-md tracking-[1px] hover:bg-lime-700 transition"
     >
-      + 新規投稿
+      {children}
     </Link>
   );
 }

@@ -1,4 +1,11 @@
-import { pgTable, uuid, text, timestamp } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  uuid,
+  text,
+  timestamp,
+  pgEnum,
+  integer,
+} from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -28,5 +35,25 @@ export const contacts = pgTable("contacts", {
   email: text("email").notNull(),
   message: text("message").notNull(),
   ip: text("ip"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const photoCategoryEnum = pgEnum("photo_category", [
+  "build",
+  "exterior",
+  "interior",
+  "travel",
+]);
+
+export const photos = pgTable("photos", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  url: text("url").notNull(),
+  category: photoCategoryEnum("category").notNull(),
+  title: text("title"),
+  description: text("description"),
+  width: integer("width"),
+  height: integer("height"),
+  order: integer("order").default(0),
+  takenAt: timestamp("taken_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
