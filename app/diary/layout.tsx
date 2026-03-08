@@ -8,7 +8,7 @@ export default function DiaryLayout({
   return (
     <div className="relative bg-white min-h-screen">
       {children}
-      <AdminFab>+ 新規投稿</AdminFab>
+      <AdminFab href="/diary/new">+ 新規投稿</AdminFab>
     </div>
   );
 }

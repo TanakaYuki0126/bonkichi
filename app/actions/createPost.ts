@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 export async function createPost(formData: FormData) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
@@ -13,6 +14,9 @@ export async function createPost(formData: FormData) {
   const eyecatch = formData.get("eyecatch") as File;
 
   let eyecatchFileName: string | null = null;
+  if (eyecatch.size > MAX_FILE_SIZE) {
+    throw new Error("File size must be under 5MB");
+  }
   if (eyecatch) {
     const supabase = createClient();
     const fileName = `${Date.now()}-${eyecatch.name}`;
