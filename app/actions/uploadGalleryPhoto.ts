@@ -7,7 +7,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { imageSize } from "image-size";
 import exifr from "exifr";
-import { categories } from "../gallery/new/Form";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -69,6 +68,7 @@ export async function uploadGalleryPhoto(formData: FormData) {
     aperture: exif.FNumber,
     shutter: exif.ExposureTime,
     iso: exif.ISO,
+    focalLength: exif.FocalLength,
   };
 
   await db.insert(photos).values(photo);

@@ -51,8 +51,8 @@ export const photos = pgTable("photos", {
   category: photoCategoryEnum("category").notNull(),
   title: text("title"),
   description: text("description"),
-  width: integer("width"),
-  height: integer("height"),
+  width: integer("width").notNull(),
+  height: integer("height").notNull(),
   displayOrder: integer("display_order").default(0),
   location: text("location"),
   takenAt: timestamp("taken_at"),
@@ -61,5 +61,6 @@ export const photos = pgTable("photos", {
   aperture: text("aperture"),
   shutter: text("shutter"),
   iso: text("iso"),
+  focalLength: text("focal_length"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
