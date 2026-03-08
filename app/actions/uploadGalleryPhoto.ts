@@ -68,6 +68,7 @@ export async function uploadGalleryPhoto(formData: FormData) {
     aperture: exif.FNumber,
     shutter: exif.ExposureTime,
     iso: exif.ISO,
+    focalLength: exif.FocalLength,
   };
 
   await db.insert(photos).values(photo);

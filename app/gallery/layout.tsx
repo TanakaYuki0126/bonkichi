@@ -8,7 +8,7 @@ export default function AboutLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="w-full">
       <PageFadeIn />
       {children}
       <AdminFab href="/gallery/new">+ 画像を追加</AdminFab>

@@ -61,5 +61,6 @@ export const photos = pgTable("photos", {
   aperture: text("aperture"),
   shutter: text("shutter"),
   iso: text("iso"),
+  focalLength: text("focal_length"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
