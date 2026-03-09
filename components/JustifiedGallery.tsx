@@ -11,10 +11,6 @@ type Photo = typeof photos.$inferInsert & { url: string };
 export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
   const { ref, width } = useContainerWidth();
   const [selected, setSelected] = useState<Photo | null>(null);
-  if (selected) {
-    const currentIndex = photos.findIndex((p) => p.id === selected?.id);
-    console.log(currentIndex);
-  }
   const layout = justifiedLayout(
     photos.map((p) => p.width / p.height),
     { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
@@ -25,7 +21,24 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
     } else {
       document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [selected]);
+
+  const currentIndex = photos.findIndex((p) => p.id === selected?.id);
+  const isFirstImage = currentIndex === 0;
+  const isLastImage = currentIndex === photos.length - 1;
+
+  const showPrevImage = () => {
+    if (!selected || isFirstImage) return;
+    setSelected(photos[currentIndex - 1]);
+  };
+
+  const showNextImage = () => {
+    if (!selected || isLastImage) return;
+    setSelected(photos[currentIndex + 1]);
+  };
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -46,29 +59,28 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       {layout.boxes.map((box, i) => {
         const photo = photos[i];
         return (
-          <button key={photo.id} onClick={() => setSelected(photo)}>
-            <div
-              className="absolute overflow-hidden rounded-sm"
-              style={{
-                top: box.top,
-                left: box.left,
-                width: box.width,
-                height: box.height,
-              }}
-            >
-              <Image
-                src={photo.url}
-                alt={photo.title ?? ""}
-                fill
-                className="object-cover opacity-0 transition-opacity duration-500 hover:opacity-70"
-                onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
-              />
-            </div>
+          <button
+            key={photo.id}
+            style={{
+              top: box.top,
+              left: box.left,
+              width: box.width,
+              height: box.height,
+            }}
+            className="absolute overflow-hidden rounded-sm"
+            onClick={() => setSelected(photo)}
+          >
+            <Image
+              src={photo.url}
+              alt={photo.title ?? ""}
+              fill
+              className="object-cover opacity-0 transition-opacity duration-500 hover:opacity-70"
+              onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+            />
           </button>
         );
       })}
       <div
-        // onClick={() => setSelected(null)}
         className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
           selected ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
@@ -76,10 +88,33 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
         <div>
           <button className="fixed z-[60]" onClick={() => setSelected(null)}>
             <div className="relative w-8 h-8">
-              <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-white"></span>
-              <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-white"></span>
+              <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-gray-200"></span>
+              <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-gray-200"></span>
             </div>
           </button>
+          {selected && !isFirstImage && (
+            <button
+              className="fixed left-10 top-1/2 z-[60]"
+              onClick={showPrevImage}
+            >
+              <div className="relative w-8 h-8">
+                <span className="absolute left-0 top-1/2 h-0.5 w-6 rotate-45 translate-y-2  bg-gray-200"></span>
+                <span className="absolute left-0 top-1/2 h-0.5 w-6 -rotate-45 -translate-y-2  bg-gray-200"></span>
+              </div>
+            </button>
+          )}
+          {selected && !isLastImage && (
+            <button
+              className="fixed right-10 top-1/2 z-[60]"
+              onClick={showNextImage}
+            >
+              <div className="relative w-8 h-8">
+                <span className="absolute left-0 top-1/2 h-0.5 w-6 -rotate-45 translate-y-2  bg-gray-200"></span>
+                <span className="absolute left-0 top-1/2 h-0.5 w-6 rotate-45 -translate-y-2  bg-gray-200"></span>
+              </div>
+            </button>
+          )}
+
           {selected && (
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
               <p>{selected.camera}</p>
@@ -94,11 +129,11 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
           <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
             {selected && (
               <Image
+                key={selected.id}
                 src={selected.url}
                 alt={selected.title ?? ""}
-                objectFit="contain"
                 fill
-                className="rounded-sm opacity-0 transition duration-300 scale-[0.98]"
+                className="object-contain rounded-sm opacity-0 transition duration-300 scale-[0.98]"
                 onLoad={(e) => {
                   e.currentTarget.classList.remove("opacity-0");
                   e.currentTarget.classList.remove("scale-[0.98]");
