@@ -48,7 +48,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       {selected && (
         <div
           onClick={() => setSelected(null)}
-          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm"
         >
           <div onClick={(e) => e.stopPropagation()}>
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
@@ -64,7 +64,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               alt={selected.title ?? ""}
               width={selected.width}
               height={selected.height}
-              className="max-h-[80vh] w-auto rounded-sm"
+              className="max-h-[80vh] max-w-[80vw] h-auto w-auto rounded-sm"
             />
           </div>
         </div>
