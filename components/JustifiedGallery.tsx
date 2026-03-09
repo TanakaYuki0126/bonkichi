@@ -32,10 +32,10 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
   );
 
   const openPhoto = (photo: Photo) => {
-    router.push(`?photo=${photo.id}`);
+    router.replace(`?photo=${photo.id}`, { scroll: false });
   };
   const closePhoto = () => {
-    router.push("/gallery");
+    router.replace("/gallery", { scroll: false });
   };
   useEffect(() => {
     if (selectedPhoto) {
