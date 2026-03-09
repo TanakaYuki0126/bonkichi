@@ -4,13 +4,17 @@ import { useContainerWidth } from "@/hooks/useContainerWidth";
 import { photos } from "@/lib/schema";
 import justifiedLayout from "justified-layout";
 import Image from "next/image";
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Photo = typeof photos.$inferInsert & { url: string };
 
 export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
   const { ref, width } = useContainerWidth();
   const [selected, setSelected] = useState<Photo | null>(null);
+  if (selected) {
+    const currentIndex = photos.findIndex((p) => p.id === selected?.id);
+    console.log(currentIndex);
+  }
   const layout = justifiedLayout(
     photos.map((p) => p.width / p.height),
     { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
