@@ -4,7 +4,7 @@ import { useContainerWidth } from "@/hooks/useContainerWidth";
 import { photos } from "@/lib/schema";
 import justifiedLayout from "justified-layout";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 
 type Photo = typeof photos.$inferInsert & { url: string };
 
@@ -22,6 +22,17 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       document.body.style.overflow = "";
     }
   }, [selected]);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelected(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <div
       className="relative"
@@ -52,18 +63,20 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
           </button>
         );
       })}
-      {selected && (
-        <div
-          // onClick={() => setSelected(null)}
-          className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm`}
-        >
-          <div>
-            <button className="fixed z-[60]" onClick={() => setSelected(null)}>
-              <div className="relative w-8 h-8">
-                <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-white"></span>
-                <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-white"></span>
-              </div>
-            </button>
+      <div
+        // onClick={() => setSelected(null)}
+        className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
+          selected ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div>
+          <button className="fixed z-[60]" onClick={() => setSelected(null)}>
+            <div className="relative w-8 h-8">
+              <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-white"></span>
+              <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-white"></span>
+            </div>
+          </button>
+          {selected && (
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
               <p>{selected.camera}</p>
               <p>{selected.lens}</p>
@@ -72,18 +85,25 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               <p>ISO{selected.iso}</p>
               <p>{selected.focalLength}mm</p>
             </div>
-            <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
+          )}
+
+          <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
+            {selected && (
               <Image
                 src={selected.url}
                 alt={selected.title ?? ""}
                 objectFit="contain"
                 fill
-                className="rounded-sm"
+                className="rounded-sm opacity-0 transition duration-300 scale-[0.98]"
+                onLoad={(e) => {
+                  e.currentTarget.classList.remove("opacity-0");
+                  e.currentTarget.classList.remove("scale-[0.98]");
+                }}
               />
-            </div>
+            )}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
