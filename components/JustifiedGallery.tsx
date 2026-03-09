@@ -16,7 +16,11 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
     { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
   );
   return (
-    <div className="relative" ref={ref}>
+    <div
+      className="relative"
+      ref={ref}
+      style={{ height: layout.containerHeight }}
+    >
       {layout.boxes.map((box, i) => {
         const photo = photos[i];
         return (
@@ -34,7 +38,8 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
                 src={photo.url}
                 alt={photo.title ?? ""}
                 fill
-                className="object-cover"
+                className="object-cover opacity-0 transition-opacity duration-500 hover:opacity-70"
+                onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
               />
             </div>
           </button>
