@@ -8,14 +8,17 @@ import { usePathname } from "next/navigation";
 function UnderlineLink({
   href,
   children,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }) {
   return (
     <Link
       href={href}
       className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+      onClick={onClick}
     >
       {children}
     </Link>
@@ -93,10 +96,18 @@ export default function Header() {
         }`}
         style={{ zIndex: -50 }}
       >
-        <UnderlineLink href="/about">about / 紹介</UnderlineLink>
-        <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
-        <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
-        <UnderlineLink href="/gallery">contact / 連絡</UnderlineLink>
+        <UnderlineLink href="/about" onClick={() => setOpen(false)}>
+          about / 紹介
+        </UnderlineLink>
+        <UnderlineLink href="/gallery" onClick={() => setOpen(false)}>
+          gallery / ギャラリー
+        </UnderlineLink>
+        <UnderlineLink href="/diary" onClick={() => setOpen(false)}>
+          diary / 日記
+        </UnderlineLink>
+        <UnderlineLink href="/gallery" onClick={() => setOpen(false)}>
+          contact / 連絡
+        </UnderlineLink>
         {session?.user ? (
           <UnderlineLink href="/api/auth/signin">
             logout from {session?.user?.name}
