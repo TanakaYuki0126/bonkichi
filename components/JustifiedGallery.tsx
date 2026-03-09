@@ -47,10 +47,16 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       })}
       {selected && (
         <div
-          onClick={() => setSelected(null)}
-          className="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm"
+          // onClick={() => setSelected(null)}
+          className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm`}
         >
-          <div onClick={(e) => e.stopPropagation()}>
+          <div>
+            <button className="fixed z-[60]" onClick={() => setSelected(null)}>
+              <div className="relative w-8 h-8">
+                <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-white"></span>
+                <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-white"></span>
+              </div>
+            </button>
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
               <p>{selected.camera}</p>
               <p>{selected.lens}</p>
@@ -59,13 +65,15 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               <p>ISO{selected.iso}</p>
               <p>{selected.focalLength}mm</p>
             </div>
-            <Image
-              src={selected.url}
-              alt={selected.title ?? ""}
-              width={selected.width}
-              height={selected.height}
-              className="max-h-[80vh] max-w-[80vw] h-auto w-auto rounded-sm"
-            />
+            <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
+              <Image
+                src={selected.url}
+                alt={selected.title ?? ""}
+                objectFit="contain"
+                fill
+                className="rounded-sm"
+              />
+            </div>
           </div>
         </div>
       )}
