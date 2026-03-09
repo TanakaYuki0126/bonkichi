@@ -1,5 +1,6 @@
 import JustifiedGallery from "@/components/JustifiedGallery";
 import { getGalleryPhotos } from "../actions/getGalleryPhotos";
+import { Suspense } from "react";
 
 export default async function AboutPage() {
   const photos = await getGalleryPhotos();
@@ -9,7 +10,9 @@ export default async function AboutPage() {
         <h1 className="text-2xl mb-6 text-gray-700 text-center w-full ">
           gallery / ギャラリー
         </h1>
-        <JustifiedGallery photos={photos} />
+        <Suspense>
+          <JustifiedGallery photos={photos} />
+        </Suspense>
       </div>
     </div>
   );
