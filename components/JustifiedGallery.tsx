@@ -4,7 +4,7 @@ import { useContainerWidth } from "@/hooks/useContainerWidth";
 import { photos } from "@/lib/schema";
 import justifiedLayout from "justified-layout";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Photo = typeof photos.$inferInsert & { url: string };
 
@@ -15,6 +15,13 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
     photos.map((p) => p.width / p.height),
     { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
   );
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [selected]);
   return (
     <div
       className="relative"
