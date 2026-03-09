@@ -2,7 +2,6 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Logo from "@/public/bonkichi.svg";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -30,7 +29,7 @@ export default function Header() {
   if (pathname === "/") return;
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 ${
+      className={`fixed top-0 left-0 w-full z-50 h-16 ${
         open ? "bg-white opacity-90" : ""
       }`}
     >
@@ -92,6 +91,7 @@ export default function Header() {
         className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen  transition-opacity duration-300 ${
           open ? "opacity-90" : "opacity-0 pointer-events-none"
         }`}
+        style={{ zIndex: -50 }}
       >
         <UnderlineLink href="/about">about / 紹介</UnderlineLink>
         <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
