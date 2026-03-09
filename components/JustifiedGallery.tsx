@@ -4,19 +4,41 @@ import { useContainerWidth } from "@/hooks/useContainerWidth";
 import { photos } from "@/lib/schema";
 import justifiedLayout from "justified-layout";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
 type Photo = typeof photos.$inferInsert & { url: string };
 
 export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
-  const { ref, width } = useContainerWidth();
-  const [selected, setSelected] = useState<Photo | null>(null);
-  const layout = justifiedLayout(
-    photos.map((p) => p.width / p.height),
-    { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
+  const searchParams = useSearchParams();
+  const photoId = searchParams.get("photo");
+  const selectedPhoto = photos.find((p) => p.id === photoId);
+
+  const currentIndex = useMemo(
+    () => photos.findIndex((p) => p.id === selectedPhoto?.id),
+    [selectedPhoto?.id]
   );
+  const isFirstImage = currentIndex === 0;
+  const isLastImage = currentIndex === photos.length - 1;
+  const router = useRouter();
+  const { ref, width } = useContainerWidth();
+  const layout = useMemo(
+    () =>
+      justifiedLayout(
+        photos.map((p) => p.width / p.height),
+        { containerWidth: width, targetRowHeight: 250, boxSpacing: 8 }
+      ),
+    [photos, width]
+  );
+
+  const openPhoto = (photo: Photo) => {
+    router.push(`?photo=${photo.id}`);
+  };
+  const closePhoto = () => {
+    router.push("/gallery");
+  };
   useEffect(() => {
-    if (selected) {
+    if (selectedPhoto) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -24,32 +46,44 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selected]);
-
-  const currentIndex = photos.findIndex((p) => p.id === selected?.id);
-  const isFirstImage = currentIndex === 0;
-  const isLastImage = currentIndex === photos.length - 1;
+  }, [selectedPhoto]);
 
   const showPrevImage = () => {
-    if (!selected || isFirstImage) return;
-    setSelected(photos[currentIndex - 1]);
+    if (!selectedPhoto || isFirstImage) return;
+    openPhoto(photos[currentIndex - 1]);
   };
 
   const showNextImage = () => {
-    if (!selected || isLastImage) return;
-    setSelected(photos[currentIndex + 1]);
+    if (!selectedPhoto || isLastImage) return;
+    openPhoto(photos[currentIndex + 1]);
   };
+
   useEffect(() => {
+    if (!selectedPhoto) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelected(null);
+      switch (e.key) {
+        case "Escape": {
+          closePhoto();
+          break;
+        }
+        case "ArrowLeft": {
+          showPrevImage();
+          break;
+        }
+        case "ArrowRight": {
+          showNextImage();
+          break;
+        }
+        default:
+          break;
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [selectedPhoto, currentIndex]);
+
   return (
     <div
       className="relative"
@@ -68,7 +102,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               height: box.height,
             }}
             className="absolute overflow-hidden rounded-sm"
-            onClick={() => setSelected(photo)}
+            onClick={() => openPhoto(photo)}
           >
             <Image
               src={photo.url}
@@ -82,17 +116,17 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       })}
       <div
         className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
-          selected ? "opacity-100" : "opacity-0 pointer-events-none"
+          selectedPhoto ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
         <div>
-          <button className="fixed z-[60]" onClick={() => setSelected(null)}>
+          <button className="fixed z-[60]" onClick={closePhoto}>
             <div className="relative w-8 h-8">
               <span className="absolute left-0 top-1/2 h-0.5 w-8 rotate-45 bg-gray-200"></span>
               <span className="absolute left-0 top-1/2 h-0.5 w-8 -rotate-45 bg-gray-200"></span>
             </div>
           </button>
-          {selected && !isFirstImage && (
+          {selectedPhoto && !isFirstImage && (
             <button
               className="fixed left-10 top-1/2 z-[60]"
               onClick={showPrevImage}
@@ -103,7 +137,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               </div>
             </button>
           )}
-          {selected && !isLastImage && (
+          {selectedPhoto && !isLastImage && (
             <button
               className="fixed right-10 top-1/2 z-[60]"
               onClick={showNextImage}
@@ -115,23 +149,23 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
             </button>
           )}
 
-          {selected && (
+          {selectedPhoto && (
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
-              <p>{selected.camera}</p>
-              <p>{selected.lens}</p>
-              <p>F{selected.aperture}</p>
-              <p>1/{1 / Number(selected.shutter)}</p>
-              <p>ISO{selected.iso}</p>
-              <p>{selected.focalLength}mm</p>
+              <p>{selectedPhoto.camera}</p>
+              <p>{selectedPhoto.lens}</p>
+              <p>F{selectedPhoto.aperture}</p>
+              <p>1/{1 / Number(selectedPhoto.shutter)}</p>
+              <p>ISO{selectedPhoto.iso}</p>
+              <p>{selectedPhoto.focalLength}mm</p>
             </div>
           )}
 
           <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
-            {selected && (
+            {selectedPhoto && (
               <Image
-                key={selected.id}
-                src={selected.url}
-                alt={selected.title ?? ""}
+                key={selectedPhoto.id}
+                src={selectedPhoto.url}
+                alt={selectedPhoto.title ?? ""}
                 fill
                 className="object-contain rounded-sm opacity-0 transition duration-300 scale-[0.98]"
                 onLoad={(e) => {
