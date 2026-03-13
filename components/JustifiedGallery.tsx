@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
-type Photo = typeof photos.$inferInsert & { url: string };
+export type Photo = typeof photos.$inferInsert & { url: string };
 
 export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
   const searchParams = useSearchParams();

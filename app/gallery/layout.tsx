@@ -9,9 +9,13 @@ export default function AboutLayout({
 }) {
   return (
     <div className="w-full">
-      <PageFadeIn />
-      {children}
-      <AdminFab href="/gallery/new">+ 画像を追加</AdminFab>
+      <div className="relative max-w-6xl mx-auto px-6 py-10 min-h-screen w-full">
+        <div className="mt-16 w-full">
+          <PageFadeIn />
+          {children}
+          <AdminFab href="/gallery/new">+ 画像を追加</AdminFab>
+        </div>
+      </div>
     </div>
   );
 }

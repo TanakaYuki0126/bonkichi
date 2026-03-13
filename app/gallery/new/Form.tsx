@@ -1,11 +1,9 @@
 "use client";
-import { createPost } from "@/app/actions/createPost";
 import { uploadGalleryPhoto } from "@/app/actions/uploadGalleryPhoto";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
-
-export const categories = ["build", "exterior", "interior", "travel"] as const;
+import { categories } from "../categories";
 
 export default function NewGalleryForm() {
   const { pending } = useFormStatus();
