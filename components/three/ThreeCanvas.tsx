@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { initScene } from "./scene";
-import { animate, startExit, resetExit } from "./animate";
-import GUI from "lil-gui";
+import { animate, resetExit } from "./animate";
 
 export default function ThreeCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
