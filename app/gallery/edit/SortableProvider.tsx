@@ -21,6 +21,7 @@ export default function SortableProvider({
         const { source } = e.operation;
         if (isSortable(source)) {
           const { initialIndex, index } = source;
+          if (initialIndex === index) return;
           const target = order.current.splice(initialIndex, 1);
           order.current.splice(index, 0, target[0]);
           const newPhotos = order.current;
