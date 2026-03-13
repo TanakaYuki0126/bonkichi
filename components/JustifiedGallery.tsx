@@ -5,11 +5,12 @@ import { photos } from "@/lib/schema";
 import justifiedLayout from "justified-layout";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
-type Photo = typeof photos.$inferInsert & { url: string };
+export type Photo = typeof photos.$inferInsert & { url: string };
 
 export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
+  const startX = useRef<number | null>(null);
   const searchParams = useSearchParams();
   const photoId = searchParams.get("photo");
   const selectedPhoto = photos.find((p) => p.id === photoId);
@@ -30,6 +31,23 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
       ),
     [photos, width]
   );
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    startX.current = e.clientX;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (startX.current === null) return;
+    const diff = e.clientX - startX.current;
+    const threshold = 50;
+    if (diff > threshold) {
+      showPrevImage();
+    }
+    if (diff < -threshold) {
+      showNextImage();
+    }
+    startX.current = null;
+  };
 
   const openPhoto = (photo: Photo) => {
     router.replace(`?photo=${photo.id}`, { scroll: false });
@@ -115,9 +133,11 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
         );
       })}
       <div
-        className={`fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 touch-none bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
           selectedPhoto ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
       >
         <div>
           <button className="fixed z-[60]" onClick={closePhoto}>
@@ -128,7 +148,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
           </button>
           {selectedPhoto && !isFirstImage && (
             <button
-              className="fixed left-10 top-1/2 z-[60]"
+              className="fixed sm:left-10 left-2 top-1/2 z-[60]"
               onClick={showPrevImage}
             >
               <div className="relative w-8 h-8">
@@ -139,7 +159,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
           )}
           {selectedPhoto && !isLastImage && (
             <button
-              className="fixed right-10 top-1/2 z-[60]"
+              className="fixed sm:right-10 right-0 top-1/2 z-[60]"
               onClick={showNextImage}
             >
               <div className="relative w-8 h-8">
@@ -149,7 +169,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
             </button>
           )}
 
-          {selectedPhoto && (
+          {/* {selectedPhoto && (
             <div className="fixed right-10 text-sm text-gray-300 flex flex-col items-end">
               <p>{selectedPhoto.camera}</p>
               <p>{selectedPhoto.lens}</p>
@@ -158,7 +178,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
               <p>ISO{selectedPhoto.iso}</p>
               <p>{selectedPhoto.focalLength}mm</p>
             </div>
-          )}
+          )} */}
 
           <div className="relative flex items-center justify-center w-[80vw] h-[80vh]">
             {selectedPhoto && (
