@@ -1,16 +1,17 @@
-import BonkichiModel from "./BonkichiModel";
+import ScrollScene from "./ScrollScene";
+import ScrollSections from "./ScrollSections";
 
 export default function AboutPage() {
   return (
-    <div className="relative max-w-2xl mx-auto px-6 py-10">
-      <div className="mt-16">
-        <h1 className="text-2xl mb-6 text-gray-700 text-center">
-          about / 紹介
-        </h1>
-        <div className="w-full h-96">
-          <BonkichiModel />
-        </div>
-      </div>
+    <div>
+      {/* Hero */}
+      {/* <section className="min-h-screen flex flex-col items-center text-center gap-6 bg-slate-300 pt-20">
+        <p className="text-center w-full text-lg text-gray-600">
+          ボンゴトラックと背中に乗せた秘密基地
+        </p>
+        <h1 className="text-center tracking-wider text-6xl">BONKICHI</h1>
+      </section> */}
+      <ScrollSections />
     </div>
   );
 }
