@@ -1,24 +1,22 @@
 "use client";
 import * as THREE from "three";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Center } from "@react-three/drei";
 import { useRef } from "react";
 import { useScroll } from "@/contexts/ScrollContext";
 
 function Model() {
-  const { progressRef } = useScroll();
-  const progress = progressRef.current;
+  const { smoothedProgressRef } = useScroll();
   const { scene } = useGLTF("/models/bongo.glb");
   const ref = useRef<THREE.Object3D | null>(null);
-  const { camera } = useThree();
-  useFrame(() => {
+  useFrame(({ camera }) => {
+    const progress = smoothedProgressRef.current;
     if (!ref.current) return;
     ref.current.rotation.y = progress * 20;
-    const targetX = progress * 4 - 2;
     if (progress < 0.5) {
-      camera.position.x = 2;
+      camera.position.x = 5;
     } else {
-      camera.position.x = -2;
+      camera.position.x = -5;
     }
   });
   return (
@@ -32,7 +30,7 @@ export default function BonkichiModel() {
   return (
     <Canvas
       camera={{ position: [0, 0, 20], fov: 30 }}
-      className="w-full h-full"
+      className="w-full h-full pointer-events-none"
     >
       <axesHelper args={[5]} />
       <ambientLight intensity={4.8} />
