@@ -10,7 +10,7 @@ export default function ProgressBar() {
         className="h-full bg-black/60"
         style={{ width: `${smoothedProgress * 100}%` }}
       />
-      <p>{Math.round(progress * 100)}</p>
+      <p>{progress}</p>
     </div>
   );
 }
