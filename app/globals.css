@@ -104,5 +104,5 @@ body::-webkit-scrollbar {
   opacity: 0.2;
   mix-blend-mode: multiply;
   background-image: url("/textures/cardboard-texture.jpg");
-  background-size: 400px 400px;
+  background-size: 550px 550px;
 }

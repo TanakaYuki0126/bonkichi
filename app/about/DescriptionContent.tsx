@@ -41,7 +41,7 @@ export default function DescriptionContent({
       </h2>
       <div
         className={[
-          "transition-all duration-700 ease-out",
+          "transition-all duration-700 ease-out flex flex-col gap-2",
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5",
         ].join(" ")}
         style={{ transitionDelay: visible ? "120ms" : "0ms" }}

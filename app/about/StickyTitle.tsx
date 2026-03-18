@@ -1,11 +1,12 @@
 "use client";
 
 export const titles = [
-  { title: "about / 紹介" },
-  { title: "exterior / 外装" },
-  { title: "interior / 内装" },
-  { title: "function / 機能" },
-  { title: "base / ベース車両" },
+  { title: "Concept / コンセプト" },
+  { title: "Living / 暮らし" },
+  { title: "Off-grid / エネルギー自立性" },
+  { title: "Confort / 快適性" },
+  { title: "Design / デザイン・外観" },
+  { title: "Base & Mobility / ベース車両・走行性能" },
 ];
 
 export default function StickyTitle({ activeIndex }: { activeIndex: number }) {
