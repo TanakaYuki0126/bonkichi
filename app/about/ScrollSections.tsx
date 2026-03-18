@@ -1,12 +1,12 @@
 "use client";
 
-import { FOOTER_HEIGHT } from "@/components/Footer";
 import { useEffect, useRef, useState } from "react";
 import BonkichiModel from "./BonkichiModel";
 import ProgressBar from "./ProgressBar";
 import { useScroll } from "@/contexts/ScrollContext";
 import ParallaxImage from "./ParallaxImage";
 import StickyTitle from "./StickyTitle";
+import DescriptionContent from "./DescriptionContent";
 
 //スクロール位置から現在のセクションのインデックスを判別
 //x: 今横にどれだけ進んでいるか
@@ -40,8 +40,7 @@ export default function ScrollSections() {
       const scrollWidth = container.scrollWidth;
       const viewportWidth = window.innerWidth;
       const horizontalScrollDistance = scrollWidth - viewportWidth;
-      const totalHeight =
-        horizontalScrollDistance + window.innerHeight - FOOTER_HEIGHT;
+      const totalHeight = horizontalScrollDistance + window.innerHeight;
       setScrollHeight(totalHeight);
     };
     const observer = new ResizeObserver(calcHeight);
@@ -97,10 +96,16 @@ export default function ScrollSections() {
 
   return (
     <div style={{ height: isDesktop ? scrollHeight : "" }}>
-      <div className={isDesktop ? "sticky top-0 h-screen overflow-hidden" : ""}>
+      <div
+        className={
+          isDesktop
+            ? "sticky top-0 h-screen overflow-hidden bg-blob-paper bg-noise-overlay"
+            : ""
+        }
+      >
         <ProgressBar />
         <div className="fixed inset-0 pointer-events-none z-40">
-          <BonkichiModel />
+          {/* <BonkichiModel /> */}
         </div>
         <StickyTitle activeIndex={activeIndex} />
         <div
@@ -111,10 +116,10 @@ export default function ScrollSections() {
             ref={(el) => {
               itemRefs.current[0] = el;
             }}
-            className="relative w-screen h-screen shrink-0 bg-slate-100"
+            className="relative w-screen h-screen shrink-0 flex pt-40 px-20"
           >
-            <div className="absolute top-1/4 right-1/4 flex flex-col gap-2">
-              <p>「ボンゴトラックと背中に乗せた秘密基地」</p>
+            <div className="flex flex-col gap-2">
+              <p>ぼんきち = 「ボンゴトラックと背中に乗せた秘密基地」</p>
               <p>ハンドメイドの旅する小屋です。</p>
             </div>
           </section>
@@ -123,24 +128,32 @@ export default function ScrollSections() {
             ref={(el) => {
               itemRefs.current[1] = el;
             }}
-            className="relative w-screen h-screen shrink-0  bg-slate-100"
+            className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
-            <div className="absolute top-1/4 right-10 flex flex-col gap-2">
-              <h1 className="mb-5 text-4xl font-bold text-gray-700">
-                外装 / exterior
-              </h1>
+            <DescriptionContent title="屋根">
+              <p>雨が溜まらないようにアーチを描いた屋根。</p>
+              <p>ガルバリウム鋼板をオリジナルのカラーに塗装しました。</p>
+            </DescriptionContent>
+            <DescriptionContent title="外壁">
               <p>杉板の縦張り、押縁仕上げを選びました。</p>
-              <p>雨を効率よく下に流し、立体的な表情を見せてくれます。</p>
+              <p>
+                光の当たりぐあいによって変わる、立体的な表情を見せてくれます。
+              </p>
               <p>
                 自然な木の風合いを残し、経年変化を楽しむためウッドロングエコで塗装しました。
               </p>
-            </div>
+            </DescriptionContent>
+            <DescriptionContent title="玄関">
+              <p>アーチの屋根に合わせてドアもアーチにしてみました。</p>
+              <p>小さなポーチを設けています。</p>
+              <p>夜にはダウンライトの温かい光が灯ります。</p>
+            </DescriptionContent>
           </section>
           <section
             ref={(el) => {
               itemRefs.current[2] = el;
             }}
-            className="relative w-screen h-screen shrink-0 bg-green-300"
+            className="relative w-screen h-screen shrink-0"
           >
             <div className="absolute top-1/4 right-1/4">
               <h1 className="text-4xl font-bold text-gray-700">
@@ -152,7 +165,7 @@ export default function ScrollSections() {
             ref={(el) => {
               itemRefs.current[3] = el;
             }}
-            className="relative w-screen h-screen shrink-0 bg-lime-300"
+            className="relative w-screen h-screen shrink-0 "
           >
             <div className="absolute top-1/4 right-1/4">
               <h1 className="text-4xl font-bold text-gray-700">
@@ -164,7 +177,7 @@ export default function ScrollSections() {
             ref={(el) => {
               itemRefs.current[4] = el;
             }}
-            className="relative w-screen h-screen shrink-0 bg-yellow-300"
+            className="relative w-screen h-screen shrink-0 "
           >
             <div className="absolute top-1/4 right-1/4">
               <h1 className="text-4xl font-bold text-gray-700">

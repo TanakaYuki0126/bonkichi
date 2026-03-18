@@ -1,0 +1,53 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+export default function DescriptionContent({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.observe(entry.target);
+        }
+      },
+      {
+        root: null,
+        threshold: 0.5, //要素の20%が見えたら
+      }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className={"flex flex-col gap-2 w-full"}>
+      <h2
+        className={[
+          "mb-2 text-lg font-bold text-gray-700 transition-all duration-500 ease-out",
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+        ].join(" ")}
+      >
+        {title}
+      </h2>
+      <div
+        className={[
+          "transition-all duration-700 ease-out",
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5",
+        ].join(" ")}
+        style={{ transitionDelay: visible ? "120ms" : "0ms" }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}

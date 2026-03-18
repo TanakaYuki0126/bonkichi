@@ -6,7 +6,7 @@ export default function DiaryLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative bg-white min-h-screen">
+    <div className="relative bg-white min-h-screen bg-blob-paper bg-noise-overlay">
       {children}
       <AdminFab href="/diary/new">+ 新規投稿</AdminFab>
     </div>

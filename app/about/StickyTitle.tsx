@@ -1,7 +1,7 @@
 "use client";
 
 export const titles = [
-  { title: "story / ストーリー" },
+  { title: "about / 紹介" },
   { title: "exterior / 外装" },
   { title: "interior / 内装" },
   { title: "function / 機能" },

@@ -51,3 +51,58 @@ body::-webkit-scrollbar {
   animation: titleCharIn 480ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
   transform-origin: left center;
 }
+
+@keyframes blobShift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+  }
+  50% {
+    background-position: 14% 26%, 86% 14%, 10% 84%, 92% 74%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+  }
+}
+
+.bg-blob-paper {
+  /* ベーストーン */
+  background-color: #f7f6f2;
+  background-image: radial-gradient(
+      circle at top left,
+      rgba(236, 228, 208, 0.612),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(211, 228, 215, 0.256),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(222, 231, 243, 0.5),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(239, 233, 218, 0.684),
+      transparent 55%
+    );
+  background-size: 140% 140%, 140% 140%, 140% 140%, 140% 140%;
+  background-repeat: no-repeat;
+  animation: blobShift 26s ease-in-out infinite alternate;
+}
+
+.bg-noise-overlay {
+  /* position: relative; */
+  /* overflow: hidden; */
+}
+.bg-noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
+  background-image: url("/textures/cardboard-texture.jpg");
+  background-size: 400px 400px;
+}
