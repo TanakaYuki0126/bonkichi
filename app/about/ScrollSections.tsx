@@ -7,6 +7,10 @@ import { useScroll } from "@/contexts/ScrollContext";
 import ParallaxImage from "./ParallaxImage";
 import StickyTitle from "./StickyTitle";
 import DescriptionContent from "./DescriptionContent";
+import Image from "next/image";
+import ParallaxFrontImage from "./ParallaxFrontImage";
+import FloatingImage from "./FloatingImage";
+import FadeUpTextLine from "./FadeUpTextLine";
 
 //スクロール位置から現在のセクションのインデックスを判別
 //x: 今横にどれだけ進んでいるか
@@ -120,20 +124,42 @@ export default function ScrollSections() {
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20"
           >
             <div className="flex flex-col gap-4">
-              <p>ぼんきち = 「ボンゴトラックと背中に乗せた秘密基地」</p>
-              <p>ハンドメイドの旅する小屋です。</p>
-              <p>
+              <FadeUpTextLine i={0}>
+                <p
+                  className="underline-grow"
+                  style={{ "--delay": 3.5 } as React.CSSProperties}
+                >
+                  ぼんきち = 「ボンゴトラックと背中に乗せた秘密基地」
+                </p>
+              </FadeUpTextLine>
+              <FadeUpTextLine i={1}>
+                ハンドメイドの旅する小屋です。
+              </FadeUpTextLine>
+              <br />
+              <FadeUpTextLine i={2}>
+                キャンピングカーで日本全国を旅したいと思っていました。
+              </FadeUpTextLine>
+              <FadeUpTextLine i={3}>
                 既製品のキャンピングカーを買えば、間違いなく快適な旅ができますが、
-              </p>
-              <p>
-                もう少し自分の手が入った手作り感のある場所がいいなと思っていました。
-              </p>
-              <p>そこで知ったのが「モバイルハウス」。</p>
-              <p>これぞ、思っていたものだ！ということで</p>
-              <p>たくさんの人たちに協力してもらい、完成しました。</p>
+              </FadeUpTextLine>
+              <FadeUpTextLine i={4}>
+                もう少し自分の手が入った、手作り感のあるもので旅をしたいなと思っていました。
+              </FadeUpTextLine>
+              <FadeUpTextLine i={5}>
+                そこで知ったのが「モバイルハウス」。
+              </FadeUpTextLine>
+              <FadeUpTextLine i={6}>
+                これぞ、思い描いていたものだ！ということで
+              </FadeUpTextLine>
+              <FadeUpTextLine i={7}>
+                そこで知ったのが「モバイルハウス」。
+              </FadeUpTextLine>
+              <FadeUpTextLine i={8}>
+                たくさんの人たちに協力してもらい、形にすることができました。
+              </FadeUpTextLine>
             </div>
+            <ParallaxFrontImage />
           </section>
-          <ParallaxImage />
           {/* Living */}
           <section
             ref={(el) => {
@@ -200,9 +226,11 @@ export default function ScrollSections() {
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
             <DescriptionContent title="壁断熱">
+              <FloatingImage />
               <p>
-                壁には30mmのスタイロフォームを詰め、できるだけ断熱がされるようにしました。
+                壁には30mmのスタイロフォームを詰め、できるだけ断熱されるようにしました。
               </p>
+              <p>これで少し快適になっているでしょうか？</p>
             </DescriptionContent>
             <DescriptionContent title="薪ストーブ">
               <p>寒い日には薪ストーブを焚くこともできます。</p>

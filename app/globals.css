@@ -54,20 +54,57 @@ body::-webkit-scrollbar {
 
 @keyframes blobShift {
   0% {
-    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      100% 100%;
   }
   50% {
-    background-position: 14% 26%, 86% 14%, 10% 84%, 92% 74%;
+    background-position:
+      14% 26%,
+      86% 14%,
+      10% 84%,
+      92% 74%;
   }
   100% {
-    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      100% 100%;
   }
+}
+
+@keyframes imageCircleIn {
+  0% {
+    mask-size: 0% 0%;
+    opacity: 0.6;
+  }
+  100% {
+    mask-size: 200% 200%;
+    opacity: 1;
+  }
+}
+
+.animate-circleIn {
+  animation: imageCircleIn 1s both;
+  animation-delay: 2s;
+  animation-timing-function: ease-in-out;
+  will-change: mask-size;
+  mask-image: radial-gradient(circle, white 50%, transparent 51%);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: radial-gradient(circle, white 50%, transparent 51%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
 }
 
 .bg-blob-paper {
   /* ベーストーン */
   background-color: #f7f6f2;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at top left,
       rgba(236, 228, 208, 0.612),
       transparent 55%
@@ -87,7 +124,11 @@ body::-webkit-scrollbar {
       rgba(239, 233, 218, 0.684),
       transparent 55%
     );
-  background-size: 140% 140%, 140% 140%, 140% 140%, 140% 140%;
+  background-size:
+    140% 140%,
+    140% 140%,
+    140% 140%,
+    140% 140%;
   background-repeat: no-repeat;
   animation: blobShift 26s ease-in-out infinite alternate;
 }
@@ -105,4 +146,62 @@ body::-webkit-scrollbar {
   mix-blend-mode: multiply;
   background-image: url("/textures/cardboard-texture.jpg");
   background-size: 550px 550px;
+}
+
+@keyframes textFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-text {
+  opacity: 0;
+  animation: textFadeUp 1s forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: calc(var(--i) * 0.2s + 1s);
+}
+
+.underline-grow {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-grow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  opacity: 0.6;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineGrow 2s forwards;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-delay: calc(var(--delay) * 1s);
+}
+
+@keyframes lineGrow {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  35% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  65% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
 }

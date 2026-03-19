@@ -1,7 +1,7 @@
 "use client";
 
 export const titles = [
-  { title: "Concept / コンセプト" },
+  { title: "Story / ストーリー" },
   { title: "Living / 暮らし" },
   { title: "Off-grid / エネルギー自立性" },
   { title: "Confort / 快適性" },

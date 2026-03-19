@@ -24,7 +24,7 @@ export default function DescriptionContent({
       {
         root: null,
         threshold: 0.5, //要素の20%が見えたら
-      }
+      },
     );
     observer.observe(el);
     return () => observer.disconnect();
