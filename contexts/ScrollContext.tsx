@@ -56,12 +56,20 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
       progressRef.current = p;
       setProgress(p);
     };
+    const onWheel = (e: WheelEvent) => {
+      //横スワイプを縦に変換
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        window.scrollBy({ top: e.deltaX });
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll);
     window.addEventListener("resize", onScroll);
+    window.addEventListener("wheel", onWheel, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("wheel", onWheel);
     };
   }, []);
   useEffect(() => {

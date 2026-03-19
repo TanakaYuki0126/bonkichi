@@ -2,10 +2,10 @@
 
 export const titles = [
   { title: "Story / ストーリー" },
+  { title: "Design / デザイン・外観" },
   { title: "Living / 暮らし" },
   { title: "Off-grid / エネルギー自立性" },
   { title: "Confort / 快適性" },
-  { title: "Design / デザイン・外観" },
   { title: "Base & Mobility / ベース車両・走行性能" },
 ];
 

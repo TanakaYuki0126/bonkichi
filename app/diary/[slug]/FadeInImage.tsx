@@ -17,7 +17,7 @@ export default function FadeInImage({
         width={1600}
         height={900}
         style={{ maxWidth: "100%" }}
-        className="opacity-0 transition-opacity duration-500 hover:opacity-70"
+        className="opacity-0 transition-opacity duration-500"
         onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
       />
     </div>

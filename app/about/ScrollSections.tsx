@@ -145,14 +145,12 @@ export default function ScrollSections() {
               <FadeUpTextLine i={4}>
                 もう少し自分の手が入った、手作り感のあるもので旅をしたいなと思っていました。
               </FadeUpTextLine>
+              <br />
               <FadeUpTextLine i={5}>
                 そこで知ったのが「モバイルハウス」。
               </FadeUpTextLine>
               <FadeUpTextLine i={6}>
                 これぞ、思い描いていたものだ！ということで
-              </FadeUpTextLine>
-              <FadeUpTextLine i={7}>
-                そこで知ったのが「モバイルハウス」。
               </FadeUpTextLine>
               <FadeUpTextLine i={8}>
                 たくさんの人たちに協力してもらい、形にすることができました。
@@ -160,6 +158,33 @@ export default function ScrollSections() {
             </div>
             <ParallaxFrontImage />
           </section>
+          {/* Design */}
+          <section
+            ref={(el) => {
+              itemRefs.current[4] = el;
+            }}
+            className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
+          >
+            <DescriptionContent title="外壁">
+              <p>杉板の縦張り、押縁仕上げを選びました。</p>
+              <p>
+                光の当たりぐあいによって変わる、立体的な表情を見せてくれます。
+              </p>
+              <p>
+                自然な木の風合いを残し、経年変化を楽しむため天然素材を使った木材防護材「ウッドロングエコ」で塗装しました。
+              </p>
+            </DescriptionContent>
+            <DescriptionContent title="屋根">
+              <p>雨が溜まらないように、アーチの屋根にしました。</p>
+              <p>ガルバリウム鋼板をオリジナルのカラーに塗装しました。</p>
+            </DescriptionContent>
+            <DescriptionContent title="玄関ポーチ">
+              <p>アーチの屋根に合わせてドアもアーチにしてみました。</p>
+              <p>小さなポーチを設けています。</p>
+              <p>夜にはダウンライトの温かい光が灯ります。</p>
+            </DescriptionContent>
+          </section>
+          <ParallaxImage />
           {/* Living */}
           <section
             ref={(el) => {
@@ -246,33 +271,6 @@ export default function ScrollSections() {
                 ポータブル電源の出力をDCに変換して電源とするシステムを作成してもらいました。
               </p>
               <p>目立たないように収納と一体化させています。</p>
-            </DescriptionContent>
-          </section>
-          <ParallaxImage />
-          {/* Design */}
-          <section
-            ref={(el) => {
-              itemRefs.current[4] = el;
-            }}
-            className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
-          >
-            <DescriptionContent title="外壁">
-              <p>杉板の縦張り、押縁仕上げを選びました。</p>
-              <p>
-                光の当たりぐあいによって変わる、立体的な表情を見せてくれます。
-              </p>
-              <p>
-                自然な木の風合いを残し、経年変化を楽しむため天然素材を使った木材防護材「ウッドロングエコ」で塗装しました。
-              </p>
-            </DescriptionContent>
-            <DescriptionContent title="屋根">
-              <p>雨が溜まらないように、アーチの屋根にしました。</p>
-              <p>ガルバリウム鋼板をオリジナルのカラーに塗装しました。</p>
-            </DescriptionContent>
-            <DescriptionContent title="玄関ポーチ">
-              <p>アーチの屋根に合わせてドアもアーチにしてみました。</p>
-              <p>小さなポーチを設けています。</p>
-              <p>夜にはダウンライトの温かい光が灯ります。</p>
             </DescriptionContent>
           </section>
           <ParallaxImage />

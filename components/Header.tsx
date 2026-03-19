@@ -36,7 +36,7 @@ export default function Header() {
         open ? "bg-white opacity-90" : ""
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-700">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-800">
         <Link
           href="/"
           className="flex items-center text-lg hover:opacity-70 transition gap-1"

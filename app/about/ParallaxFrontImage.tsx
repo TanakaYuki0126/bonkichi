@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ParallaxFrontImage() {
   const { smoothedProgress } = useScroll();
-  const translateX = -smoothedProgress * smoothedProgress * 5000;
+  const translateX = -smoothedProgress * 1000;
   return (
     <Image
       src="/about/photo_main.jpg"

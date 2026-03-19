@@ -13,16 +13,19 @@ export default async function diaryPage() {
       <PageFadeIn />
       <div className="relative max-w-2xl mx-auto px-6 py-10">
         <div className="mt-16">
-          <h1 className="text-2xl mb-6 text-gray-700 text-center">
+          <h1 className="text-2xl mb-6 text-gray-800 text-center">
             diary / 日記
           </h1>
           <ul className="flex flex-col gap-6">
             {posts.map((post) => {
               return (
                 <li key={post.id}>
-                  <Link href={`/diary/${post.slug}`} className="text-gray-600">
+                  <Link
+                    href={`/diary/${post.slug}`}
+                    className="text-gray-800 hover:opacity-80 transition-opacity duration-300"
+                  >
                     {post.createdAt && (
-                      <p className=" text-gray-400 text-sm">
+                      <p className=" text-gray-500 text-sm">
                         {new Date(post.createdAt).toLocaleDateString("ja-JP")}
                       </p>
                     )}
