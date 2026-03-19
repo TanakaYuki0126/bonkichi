@@ -58,9 +58,12 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
     };
     const onWheel = (e: WheelEvent) => {
       //横スワイプを縦に変換
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        window.scrollBy({ top: e.deltaX });
-      }
+      const delta =
+        Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      scrollYRef.current += delta;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollYRef.current = Math.max(0, Math.min(scrollYRef.current, max));
+      progressRef.current = scrollYRef.current / max;
     };
     onScroll();
     window.addEventListener("scroll", onScroll);
