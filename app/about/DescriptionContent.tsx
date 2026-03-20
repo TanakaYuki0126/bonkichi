@@ -5,9 +5,11 @@ import { useEffect, useRef, useState } from "react";
 export default function DescriptionContent({
   title,
   children,
+  isDesktop = true,
 }: {
   title: string;
   children: React.ReactNode;
+  isDesktop?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -31,14 +33,16 @@ export default function DescriptionContent({
   }, []);
   return (
     <div ref={ref} className={"flex flex-col gap-2 w-full h-full pb-20"}>
-      <h2
-        className={[
-          "mb-2 text-lg font-bold text-gray-700 transition-all duration-500 ease-out",
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-        ].join(" ")}
-      >
-        {title}
-      </h2>
+      {isDesktop && (
+        <h2
+          className={[
+            "mb-2 text-lg font-bold text-gray-700 transition-all duration-500 ease-out",
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+          ].join(" ")}
+        >
+          {title}
+        </h2>
+      )}
       <div
         className={[
           "transition-all duration-700 ease-out flex flex-col gap-2 h-full",

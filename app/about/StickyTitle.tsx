@@ -2,11 +2,11 @@
 
 export const titles = [
   { title: "Story / ストーリー" },
-  { title: "Design / デザイン・外観" },
+  { title: "Design / デザイン" },
   { title: "Living / 暮らし" },
-  { title: "Off-grid / エネルギー自立性" },
+  { title: "Power / エネルギー" },
   { title: "Confort / 快適性" },
-  { title: "Base & Mobility / ベース車両・走行性能" },
+  { title: "Base & Mobility / ベース車両" },
 ];
 
 export default function StickyTitle({ activeIndex }: { activeIndex: number }) {
