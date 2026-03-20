@@ -14,7 +14,7 @@ export default function ParallaxImageDesktop({
   const maxShift = 120;
   const translateX = (smoothedProgress - 0.5) * 5 * maxShift;
   return (
-    <div className="shrink-0 h-screen w-[90vw] relative overflow-hidden">
+    <div className="shrink-0 h-screen h-dvh w-[90vw] relative overflow-hidden">
       <Image
         src={src}
         alt={alt}

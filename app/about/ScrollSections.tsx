@@ -101,7 +101,7 @@ export default function ScrollSections() {
       <div
         className={
           isDesktop
-            ? "sticky top-0 h-screen overflow-hidden bg-blob-paper bg-noise-overlay"
+            ? "sticky top-0 h-screen h-dvh overflow-hidden bg-blob-paper bg-noise-overlay"
             : "bg-blob-paper bg-noise-overlay"
         }
       >

@@ -91,7 +91,7 @@ export default function Header() {
         </button>
       </div>
       <nav
-        className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen  transition-opacity duration-300 ${
+        className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen h-dvh  transition-opacity duration-300 ${
           open ? "opacity-90" : "opacity-0 pointer-events-none"
         }`}
         style={{ zIndex: -50 }}

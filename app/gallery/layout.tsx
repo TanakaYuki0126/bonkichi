@@ -8,7 +8,7 @@ export default function AboutLayout({
 }) {
   return (
     <div className="w-full bg-blob-paper bg-noise-overlay">
-      <div className="relative max-w-6xl mx-auto px-6 py-10 min-h-screen w-full">
+      <div className="relative max-w-6xl mx-auto px-6 py-10 min-h-screen h-dvh w-full">
         <div className="mt-16 w-full">
           <PageFadeIn />
           {children}

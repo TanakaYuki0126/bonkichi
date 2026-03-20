@@ -8,7 +8,7 @@ export default function SectionContainer({
   return (
     <section
       ref={ref}
-      className="relative w-screen h-screen shrink-0 flex flex-col pt-40 px-5 lg:px-20 gap-8"
+      className="relative w-screen h-screen h-dvh shrink-0 flex flex-col pt-40 px-5 lg:px-20 gap-8"
     >
       {children}
     </section>
