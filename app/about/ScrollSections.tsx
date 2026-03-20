@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import BonkichiModel from "./BonkichiModel";
 import ProgressBar from "./ProgressBar";
 import { useScroll } from "@/contexts/ScrollContext";
-import ParallaxImage from "./ParallaxImage";
 import StickyTitle from "./StickyTitle";
 import DescriptionContent from "./DescriptionContent";
 import TopImage from "./TopImage";
@@ -13,7 +12,7 @@ import FadeUpTextLine from "./FadeUpTextLine";
 import SectionDivider from "./SectionDivider";
 import TopImageMobile from "./TopImageMobile";
 import MobileTitle from "./MobileTitle";
-import ParallaxImageMobile from "./ParallaxImageMobile";
+import ParallaxImage from "./ParallaxImage";
 
 //スクロール位置から現在のセクションのインデックスを判別
 //x: 今横にどれだけ進んでいるか
@@ -191,14 +190,11 @@ export default function ScrollSections() {
               <p>夜にはダウンライトの温かい光が灯ります。</p>
             </DescriptionContent>
           </section>
-          {isDesktop ? (
-            <ParallaxImage src="/about/photo_sample_1.jpg" alt="photo_1" />
-          ) : (
-            <ParallaxImageMobile
-              src="/about/photo_sample_1.jpg"
-              alt="photo_1"
-            />
-          )}
+          <ParallaxImage
+            isDesktop={isDesktop}
+            src="/about/photo_sample_1.jpg"
+            alt="photo_1"
+          />
           {/* Living */}
           {isDesktop && <SectionDivider>LIVING</SectionDivider>}
           <section
@@ -230,14 +226,11 @@ export default function ScrollSections() {
               <p>取り付けは少し手間ですが、、</p>
             </DescriptionContent>
           </section>
-          {isDesktop ? (
-            <ParallaxImage src="/about/photo_sample_2.jpg" alt="photo_2" />
-          ) : (
-            <ParallaxImageMobile
-              src="/about/photo_sample_2.jpg"
-              alt="photo_2"
-            />
-          )}
+          <ParallaxImage
+            isDesktop={isDesktop}
+            src="/about/photo_sample_2.jpg"
+            alt="photo_2"
+          />
           {/* Off-grid */}
           {isDesktop && <SectionDivider>OFF GRID</SectionDivider>}
           <section
@@ -267,14 +260,11 @@ export default function ScrollSections() {
               </p>
             </DescriptionContent>
           </section>
-          {isDesktop ? (
-            <ParallaxImage src="/about/photo_sample_3.jpg" alt="photo_3" />
-          ) : (
-            <ParallaxImageMobile
-              src="/about/photo_sample_3.jpg"
-              alt="photo_3"
-            />
-          )}
+          <ParallaxImage
+            isDesktop={isDesktop}
+            src="/about/photo_sample_3.jpg"
+            alt="photo_3"
+          />
           {/* Confort */}
           {isDesktop && <SectionDivider>CONFORT</SectionDivider>}
           <section
@@ -313,14 +303,11 @@ export default function ScrollSections() {
               <p>目立たないように収納と一体化させています。</p>
             </DescriptionContent>
           </section>
-          {isDesktop ? (
-            <ParallaxImage src="/about/photo_sample_4.jpg" alt="photo_4" />
-          ) : (
-            <ParallaxImageMobile
-              src="/about/photo_sample_4.jpg"
-              alt="photo_4"
-            />
-          )}
+          <ParallaxImage
+            isDesktop={isDesktop}
+            src="/about/photo_sample_4.jpg"
+            alt="photo_4"
+          />
           {/* Base & Mobility */}
           {isDesktop && <SectionDivider>BASE & MOBILITY</SectionDivider>}
           <section

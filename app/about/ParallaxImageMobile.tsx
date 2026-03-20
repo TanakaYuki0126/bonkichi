@@ -1,6 +1,5 @@
 "use client";
 
-import { useScroll } from "@/contexts/ScrollContext";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 

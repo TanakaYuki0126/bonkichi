@@ -1,32 +1,18 @@
-"use client";
-
-import { useScroll } from "@/contexts/ScrollContext";
-import Image from "next/image";
+import ParallaxImageDesktop from "./ParallaxImageDesktop";
+import ParallaxImageMobile from "./ParallaxImageMobile";
 
 export default function ParallaxImage({
   src,
   alt,
+  isDesktop,
 }: {
   src: string;
   alt: string;
+  isDesktop: boolean;
 }) {
-  const { smoothedProgress } = useScroll();
-  const maxShift = 120;
-  const translateX = (smoothedProgress - 0.5) * 5 * maxShift;
-  return (
-    <div className="shrink-0 h-screen w-[90vw] relative overflow-hidden">
-      <Image
-        src={src}
-        alt={alt}
-        sizes="100vw"
-        fill
-        className="object-cover -z-10"
-        style={{
-          transform: `translate3d(${translateX}px,0,0)`,
-          scale: 1.5,
-          transformOrigin: "bottom",
-        }}
-      />
-    </div>
-  );
+  if (isDesktop) {
+    return <ParallaxImageDesktop src={src} alt={alt} />;
+  } else {
+    return <ParallaxImageMobile src={src} alt={alt} />;
+  }
 }
