@@ -3,6 +3,7 @@ import MobileTitle from "./MobileTitle";
 import DescriptionContent from "./DescriptionContent";
 import { contents as allContents } from "./contents";
 import SectionContainer from "./SectionContainer";
+import Image from "next/image";
 
 export default function Section({
   ref,
