@@ -3,19 +3,29 @@
 import { useScroll } from "@/contexts/ScrollContext";
 import Image from "next/image";
 
-export default function ParallaxImage() {
+export default function ParallaxImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
   const { smoothedProgress } = useScroll();
   const maxShift = 120;
-  const translateX = (smoothedProgress - 0.5) * 2 * maxShift;
+  const translateX = (smoothedProgress - 0.5) * 5 * maxShift;
   return (
-    <div className="shrink-0 h-screen w-[35vw] relative overflow-hidden shadow-inner">
+    <div className="shrink-0 h-screen w-[90vw] relative overflow-hidden">
       <Image
-        src="/about/photo_1.jpg"
-        alt="photo_1"
+        src={src}
+        alt={alt}
         sizes="100vw"
         fill
         className="object-cover -z-10"
-        style={{ transform: `translate3d(${translateX}px,0,0)`, scale: 1.7 }}
+        style={{
+          transform: `translate3d(${translateX}px,0,0)`,
+          scale: 1.5,
+          transformOrigin: "bottom",
+        }}
       />
     </div>
   );

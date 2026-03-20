@@ -30,7 +30,7 @@ export default function DescriptionContent({
     return () => observer.disconnect();
   }, []);
   return (
-    <div ref={ref} className={"flex flex-col gap-2 w-full"}>
+    <div ref={ref} className={"flex flex-col gap-2 w-full h-full pb-20"}>
       <h2
         className={[
           "mb-2 text-lg font-bold text-gray-700 transition-all duration-500 ease-out",
@@ -41,7 +41,7 @@ export default function DescriptionContent({
       </h2>
       <div
         className={[
-          "transition-all duration-700 ease-out flex flex-col gap-2",
+          "transition-all duration-700 ease-out flex flex-col gap-2 h-full",
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5",
         ].join(" ")}
         style={{ transitionDelay: visible ? "120ms" : "0ms" }}

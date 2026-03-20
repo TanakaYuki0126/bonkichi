@@ -7,10 +7,10 @@ import { useScroll } from "@/contexts/ScrollContext";
 import ParallaxImage from "./ParallaxImage";
 import StickyTitle from "./StickyTitle";
 import DescriptionContent from "./DescriptionContent";
-import Image from "next/image";
 import ParallaxFrontImage from "./ParallaxFrontImage";
 import FloatingImage from "./FloatingImage";
 import FadeUpTextLine from "./FadeUpTextLine";
+import SectionDivider from "./SectionDivider";
 
 //スクロール位置から現在のセクションのインデックスを判別
 //x: 今横にどれだけ進んでいるか
@@ -159,6 +159,7 @@ export default function ScrollSections() {
             <ParallaxFrontImage />
           </section>
           {/* Design */}
+          <SectionDivider>DESIGN</SectionDivider>
           <section
             ref={(el) => {
               itemRefs.current[4] = el;
@@ -184,8 +185,9 @@ export default function ScrollSections() {
               <p>夜にはダウンライトの温かい光が灯ります。</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage />
+          <ParallaxImage src="/about/photo_sample_1.jpg" alt="photo_1" />
           {/* Living */}
+          <SectionDivider>LIVING</SectionDivider>
           <section
             ref={(el) => {
               itemRefs.current[1] = el;
@@ -214,8 +216,9 @@ export default function ScrollSections() {
               <p>取り付けは少し手間ですが、、</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage />
+          <ParallaxImage src="/about/photo_sample_2.jpg" alt="photo_2" />
           {/* Off-grid */}
+          <SectionDivider>OFF GRID</SectionDivider>
           <section
             ref={(el) => {
               itemRefs.current[2] = el;
@@ -242,8 +245,9 @@ export default function ScrollSections() {
               </p>
             </DescriptionContent>
           </section>
-          <ParallaxImage />
+          <ParallaxImage src="/about/photo_sample_3.jpg" alt="photo_3" />
           {/* Confort */}
+          <SectionDivider>CONFORT</SectionDivider>
           <section
             ref={(el) => {
               itemRefs.current[3] = el;
@@ -251,11 +255,17 @@ export default function ScrollSections() {
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
             <DescriptionContent title="壁断熱">
-              <FloatingImage />
-              <p>
-                壁には30mmのスタイロフォームを詰め、できるだけ断熱されるようにしました。
-              </p>
-              <p>これで少し快適になっているでしょうか？</p>
+              <div className="flex flex-col justify-between h-full">
+                <div>
+                  <p>
+                    壁には30mmのスタイロフォームを詰め、できるだけ断熱されるようにしました。
+                  </p>
+                  <p>これで少しは快適になっているでしょうか？</p>
+                </div>
+                <div>
+                  <FloatingImage />
+                </div>
+              </div>
             </DescriptionContent>
             <DescriptionContent title="薪ストーブ">
               <p>寒い日には薪ストーブを焚くこともできます。</p>
@@ -273,8 +283,9 @@ export default function ScrollSections() {
               <p>目立たないように収納と一体化させています。</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage />
+          <ParallaxImage src="/about/photo_sample_4.jpg" alt="photo_4" />
           {/* Base & Mobility */}
+          <SectionDivider>BASE & MOBILITY</SectionDivider>
           <section
             ref={(el) => {
               itemRefs.current[5] = el;

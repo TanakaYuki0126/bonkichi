@@ -205,3 +205,24 @@ body::-webkit-scrollbar {
     transform-origin: right;
   }
 }
+
+.writing-vertical {
+  writing-mode: sideways-lr;
+  text-orientation: upright;
+}
+
+@keyframes appearX {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.divider-appear {
+  animation: appearX 1s both;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
