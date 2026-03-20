@@ -35,7 +35,9 @@ export default function DescriptionContent({
   return (
     <div
       ref={ref}
-      className={"flex flex-col justify-between gap-2 w-full h-full pb-20"}
+      className={
+        "flex flex-col justify-between gap-2 w-full h-full pb-40 lg:pb-20"
+      }
     >
       <div>
         {isDesktop && (
