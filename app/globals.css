@@ -12,6 +12,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-zen: var(--font-zen);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,7 +25,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jp), Arial, Helvetica, sans-serif;
 }
 body::-webkit-scrollbar {
   width: 0px;

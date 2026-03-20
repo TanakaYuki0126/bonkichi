@@ -7,10 +7,13 @@ import { useScroll } from "@/contexts/ScrollContext";
 import ParallaxImage from "./ParallaxImage";
 import StickyTitle from "./StickyTitle";
 import DescriptionContent from "./DescriptionContent";
-import ParallaxFrontImage from "./ParallaxFrontImage";
+import TopImage from "./TopImage";
 import FloatingImage from "./FloatingImage";
 import FadeUpTextLine from "./FadeUpTextLine";
 import SectionDivider from "./SectionDivider";
+import TopImageMobile from "./TopImageMobile";
+import MobileTitle from "./MobileTitle";
+import ParallaxImageMobile from "./ParallaxImageMobile";
 
 //スクロール位置から現在のセクションのインデックスを判別
 //x: 今横にどれだけ進んでいるか
@@ -104,14 +107,14 @@ export default function ScrollSections() {
         className={
           isDesktop
             ? "sticky top-0 h-screen overflow-hidden bg-blob-paper bg-noise-overlay"
-            : ""
+            : "bg-blob-paper bg-noise-overlay"
         }
       >
         <ProgressBar />
         <div className="fixed inset-0 pointer-events-none z-40">
           {/* <BonkichiModel /> */}
         </div>
-        <StickyTitle activeIndex={activeIndex} />
+        {isDesktop && <StickyTitle activeIndex={activeIndex} />}
         <div
           ref={containerRef}
           className={`flex h-full ${isDesktop ? "flex-row" : "flex-col"}`}
@@ -121,8 +124,9 @@ export default function ScrollSections() {
             ref={(el) => {
               itemRefs.current[0] = el;
             }}
-            className="relative w-screen h-screen shrink-0 flex pt-40 px-20"
+            className="relative w-screen h-screen shrink-0 flex pt-40 px-10 xl:px-20"
           >
+            {!isDesktop && <MobileTitle index={0} />}
             <div className="flex flex-col gap-4">
               <FadeUpTextLine i={0}>
                 <p
@@ -140,10 +144,10 @@ export default function ScrollSections() {
                 キャンピングカーで日本全国を旅したいと思っていました。
               </FadeUpTextLine>
               <FadeUpTextLine i={3}>
-                既製品のキャンピングカーを買えば、間違いなく快適な旅ができますが、
+                既製品のキャンピングカーを買えば、間違いなく快適だと思いますが、
               </FadeUpTextLine>
               <FadeUpTextLine i={4}>
-                もう少し自分の手が入った、手作り感のあるもので旅をしたいなと思っていました。
+                もう少しオリジナルな、手作り感のある旅をしたいなと思っていました。
               </FadeUpTextLine>
               <br />
               <FadeUpTextLine i={5}>
@@ -152,20 +156,22 @@ export default function ScrollSections() {
               <FadeUpTextLine i={6}>
                 これぞ、思い描いていたものだ！ということで
               </FadeUpTextLine>
-              <FadeUpTextLine i={8}>
+              <FadeUpTextLine i={7}>
                 たくさんの人たちに協力してもらい、形にすることができました。
               </FadeUpTextLine>
             </div>
-            <ParallaxFrontImage />
+            {isDesktop && <TopImage />}
           </section>
+          {!isDesktop && <TopImageMobile />}
           {/* Design */}
-          <SectionDivider>DESIGN</SectionDivider>
+          {isDesktop && <SectionDivider>DESIGN</SectionDivider>}
           <section
             ref={(el) => {
               itemRefs.current[4] = el;
             }}
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
+            {!isDesktop && <MobileTitle index={1} />}
             <DescriptionContent title="外壁">
               <p>杉板の縦張り、押縁仕上げを選びました。</p>
               <p>
@@ -185,15 +191,23 @@ export default function ScrollSections() {
               <p>夜にはダウンライトの温かい光が灯ります。</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage src="/about/photo_sample_1.jpg" alt="photo_1" />
+          {isDesktop ? (
+            <ParallaxImage src="/about/photo_sample_1.jpg" alt="photo_1" />
+          ) : (
+            <ParallaxImageMobile
+              src="/about/photo_sample_1.jpg"
+              alt="photo_1"
+            />
+          )}
           {/* Living */}
-          <SectionDivider>LIVING</SectionDivider>
+          {isDesktop && <SectionDivider>LIVING</SectionDivider>}
           <section
             ref={(el) => {
               itemRefs.current[1] = el;
             }}
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
+            {!isDesktop && <MobileTitle index={2} />}
             <DescriptionContent title="キッチン">
               <p>最大20Lの水を使えるシンクを作りました。</p>
               <p>
@@ -216,15 +230,23 @@ export default function ScrollSections() {
               <p>取り付けは少し手間ですが、、</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage src="/about/photo_sample_2.jpg" alt="photo_2" />
+          {isDesktop ? (
+            <ParallaxImage src="/about/photo_sample_2.jpg" alt="photo_2" />
+          ) : (
+            <ParallaxImageMobile
+              src="/about/photo_sample_2.jpg"
+              alt="photo_2"
+            />
+          )}
           {/* Off-grid */}
-          <SectionDivider>OFF GRID</SectionDivider>
+          {isDesktop && <SectionDivider>OFF GRID</SectionDivider>}
           <section
             ref={(el) => {
               itemRefs.current[2] = el;
             }}
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
+            {!isDesktop && <MobileTitle index={3} />}
             <DescriptionContent title="ポータブル電源">
               <p>
                 安全性が高いとされる半個体電池を使用したポータブル電源を採用。
@@ -245,15 +267,23 @@ export default function ScrollSections() {
               </p>
             </DescriptionContent>
           </section>
-          <ParallaxImage src="/about/photo_sample_3.jpg" alt="photo_3" />
+          {isDesktop ? (
+            <ParallaxImage src="/about/photo_sample_3.jpg" alt="photo_3" />
+          ) : (
+            <ParallaxImageMobile
+              src="/about/photo_sample_3.jpg"
+              alt="photo_3"
+            />
+          )}
           {/* Confort */}
-          <SectionDivider>CONFORT</SectionDivider>
+          {isDesktop && <SectionDivider>CONFORT</SectionDivider>}
           <section
             ref={(el) => {
               itemRefs.current[3] = el;
             }}
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
+            {!isDesktop && <MobileTitle index={4} />}
             <DescriptionContent title="壁断熱">
               <div className="flex flex-col justify-between h-full">
                 <div>
@@ -283,15 +313,23 @@ export default function ScrollSections() {
               <p>目立たないように収納と一体化させています。</p>
             </DescriptionContent>
           </section>
-          <ParallaxImage src="/about/photo_sample_4.jpg" alt="photo_4" />
+          {isDesktop ? (
+            <ParallaxImage src="/about/photo_sample_4.jpg" alt="photo_4" />
+          ) : (
+            <ParallaxImageMobile
+              src="/about/photo_sample_4.jpg"
+              alt="photo_4"
+            />
+          )}
           {/* Base & Mobility */}
-          <SectionDivider>BASE & MOBILITY</SectionDivider>
+          {isDesktop && <SectionDivider>BASE & MOBILITY</SectionDivider>}
           <section
             ref={(el) => {
               itemRefs.current[5] = el;
             }}
             className="relative w-screen h-screen shrink-0 flex pt-40 px-20 gap-10 text-sm"
           >
+            {!isDesktop && <MobileTitle index={5} />}
             <DescriptionContent title="ベース車両">
               <p>マツダ ボンゴトラックをベース車両として採用。</p>
               <p>最大積載量1,000kg / ダブルタイヤ / ロングボディ。</p>

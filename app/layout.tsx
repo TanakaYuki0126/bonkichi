@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+const noto = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-jp",
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ja" style={{ overscrollBehavior: "none" }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+        className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased relative`}
       >
         <Providers>
           <Header />
