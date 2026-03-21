@@ -33,7 +33,7 @@ export default function ParallaxImageMobile({
   return (
     <div
       ref={ref}
-      className="shrink-0 w-screen h-[50dvh] relative overflow-hidden"
+      className="shrink-0 w-screen h-[500px] relative overflow-hidden"
     >
       <Image
         src={src}
