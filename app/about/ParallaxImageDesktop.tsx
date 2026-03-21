@@ -27,19 +27,19 @@ export default function ParallaxImageDesktop({
     updateSize();
     const ro = new ResizeObserver(updateSize);
     ro.observe(el);
+    const unscribe = subscribe(({ smoothedScrollY }) => {
+      const left = leftRef.current;
+      const width = widthRef.current;
+      const center = left - smoothedScrollY + width / 2;
+      const p =
+        (window.innerWidth + width / 2 - center) / (window.innerWidth + width);
+      const progress = Math.min(Math.max(p, 0), 1);
+      const imageEl = imageRef.current;
+      if (!imageEl) return;
+      imageEl.style.setProperty("--p", progress.toString());
+    });
     return () => {
-      subscribe(({ smoothedScrollY }) => {
-        const left = leftRef.current;
-        const width = widthRef.current;
-        const center = left - smoothedScrollY + width / 2;
-        const p =
-          (window.innerWidth + width / 2 - center) /
-          (window.innerWidth + width);
-        const progress = Math.min(Math.max(p, 0), 1);
-        const imageEl = imageRef.current;
-        if (!imageEl) return;
-        imageEl.style.setProperty("--p", progress.toString());
-      });
+      unscribe();
       ro.disconnect();
     };
   }, [subscribe]);

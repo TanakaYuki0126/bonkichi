@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function ParallaxImageMobile({
   src,
@@ -11,8 +11,7 @@ export default function ParallaxImageMobile({
   alt: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [progress, setProgress] = useState(0);
-  const translateY = (progress - 0.5) * 60;
+  const imageRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     const handleScroll = () => {
       const el = ref.current;
@@ -25,7 +24,9 @@ export default function ParallaxImageMobile({
         (window.innerHeight + rect.height / 2 - centerY) /
         (window.innerHeight + rect.height);
       const clamped = Math.max(Math.min(p, 1), 0);
-      setProgress(clamped);
+      const imageEl = imageRef.current;
+      if (!imageEl) return;
+      imageEl.style.setProperty("--p", clamped.toString());
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -36,15 +37,12 @@ export default function ParallaxImageMobile({
       className="shrink-0 w-screen h-[500px] relative overflow-hidden"
     >
       <Image
+        ref={imageRef}
         src={src}
         alt={alt}
         sizes="100vw"
         fill
-        className="object-cover"
-        style={{
-          transform: `translate3d(0,${translateY}px,0)`,
-          scale: 1.5,
-        }}
+        className="object-cover parallax-img-mobile"
       />
     </div>
   );
