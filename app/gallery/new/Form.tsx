@@ -31,7 +31,7 @@ export default function NewGalleryForm() {
   };
 
   return (
-    <div className="min-h-screen h-dvh bg-gray-100 flex items-center justify-center px-4 pt-20 pb-10">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-2xl font-bold mb-6 text-gray-800">画像を追加</h1>
         <form action={uploadGalleryPhoto} className="space-y-6">
