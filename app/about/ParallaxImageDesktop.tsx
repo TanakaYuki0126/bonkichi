@@ -13,29 +13,35 @@ export default function ParallaxImageDesktop({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const { subscribe } = useScroll();
+  const { subscribe, smoothedScrollYRef } = useScroll();
   const widthRef = useRef<number>(0);
+  const leftRef = useRef<number>(0);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const updateSize = () => {
       widthRef.current = el.offsetWidth;
+      const rect = el.getBoundingClientRect();
+      leftRef.current = rect.left + smoothedScrollYRef.current;
     };
     updateSize();
-    window.addEventListener("resize", updateSize);
-    return subscribe(({ smoothedScrollY }) => {
-      const rect = el.getBoundingClientRect();
-      const width = widthRef.current;
-      const center = rect?.left + width / 2;
-      const p =
-        (window.innerWidth + width / 2 - center) / (window.innerWidth + width);
-
-      const progress = Math.min(Math.max(p, 0), 1);
-      const translateX = (progress - 0.5) * 100;
-      const imageEl = imageRef.current;
-      if (!imageEl) return;
-      imageEl.style.transform = `translate3d(${translateX}px,0,0)`;
-    });
+    const ro = new ResizeObserver(updateSize);
+    ro.observe(el);
+    return () => {
+      subscribe(({ smoothedScrollY }) => {
+        const left = leftRef.current;
+        const width = widthRef.current;
+        const center = left - smoothedScrollY + width / 2;
+        const p =
+          (window.innerWidth + width / 2 - center) /
+          (window.innerWidth + width);
+        const progress = Math.min(Math.max(p, 0), 1);
+        const imageEl = imageRef.current;
+        if (!imageEl) return;
+        imageEl.style.setProperty("--p", progress.toString());
+      });
+      ro.disconnect();
+    };
   }, [subscribe]);
 
   return (
@@ -46,11 +52,7 @@ export default function ParallaxImageDesktop({
         alt={alt}
         sizes="100vw"
         fill
-        className={`object-cover -z-10 parallax-img transform`}
-        style={{
-          scale: 1.3,
-          transformOrigin: "bottom",
-        }}
+        className={`object-cover -z-10 parallax-img transform will-change-transform`}
       />
     </div>
   );
