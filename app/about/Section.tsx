@@ -25,7 +25,7 @@ export default function Section({
   useIntersectionObserver(
     observerTargetRef,
     () => observerTargetRef.current?.classList.add("animate-fadeIn"),
-    { threshold: 0.3 },
+    { threshold: 0.3 }
   );
   return (
     <SectionContainer isDesktop={isDesktop} ref={ref}>
@@ -40,7 +40,9 @@ export default function Section({
             return (
               <button onClick={() => setActiveIndex(i)} key={title}>
                 <h2
-                  className={`text-xl font-bold text-gray-700 transition-opacity ${active ? "opacity-100" : "opacity-50 hover:opacity-80"} `}
+                  className={`text-xl font-bold transition-opacity ${
+                    active ? "opacity-100" : "opacity-50 hover:opacity-80"
+                  } `}
                 >
                   {title}
                 </h2>

@@ -10,7 +10,7 @@ export default async function AboutPage() {
   const session = await getServerSession(authOptions);
   return (
     <>
-      <h1 className="text-2xl mb-6 text-gray-700 text-center w-full ">
+      <h1 className="text-2xl mb-6 text-center w-full ">
         gallery / ギャラリー
       </h1>
       {session?.user?.role === "admin" && (

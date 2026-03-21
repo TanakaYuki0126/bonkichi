@@ -27,6 +27,30 @@ body {
   color: var(--foreground);
   font-family: var(--font-jp), Arial, Helvetica, sans-serif;
 }
+.dark body {
+  color: #eee;
+}
+
+.dark img {
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.input-base {
+  @apply w-full rounded-lg px-4 py-2 border transition;
+  @apply bg-white text-gray-900 border-gray-300;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.dark .input-base {
+  @apply bg-gray-800 text-gray-100 border-gray-700;
+}
+.input-base::placeholder {
+  @apply text-gray-400;
+}
+
+.dark .input-base::placeholder {
+  @apply text-gray-500;
+}
 body::-webkit-scrollbar {
   width: 0px;
 }
@@ -126,6 +150,30 @@ body::-webkit-scrollbar {
   animation: blobShift 26s ease-in-out infinite alternate;
 }
 
+.dark .bg-blob-paper {
+  background-color: #0f1115;
+  background-image: radial-gradient(
+      circle at top left,
+      rgba(120, 110, 90, 0.15),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(90, 120, 100, 0.1),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(100, 110, 130, 0.15),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(120, 115, 100, 0.12),
+      transparent 55%
+    );
+}
+
 .bg-noise-overlay {
   /* position: relative; */
   /* overflow: hidden; */
@@ -137,6 +185,17 @@ body::-webkit-scrollbar {
   pointer-events: none;
   opacity: 0.2;
   mix-blend-mode: multiply;
+  background-image: url("/textures/cardboard-texture.jpg");
+  background-size: 550px 550px;
+}
+
+.dark .bg-noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
   background-image: url("/textures/cardboard-texture.jpg");
   background-size: 550px 550px;
 }

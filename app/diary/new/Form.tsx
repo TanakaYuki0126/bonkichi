@@ -31,42 +31,33 @@ export default function NewPostForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">新規投稿</h1>
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+        <h1 className="text-2xl font-bold mb-6">新規投稿</h1>
         <form action={createPost} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               タイトル
             </label>
-            <input
-              type-="text"
-              name="title"
-              required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            />
+            <input type-="text" name="title" required className="input-base" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               スラッジ
             </label>
-            <input
-              name="slug"
-              required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            />
+            <input name="slug" required className="input-base" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               本文
             </label>
             <textarea
               name="content"
               required
-              className="w-full rounded-lg border h-80 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
+              className="input-base h-80  resize-y"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               アイキャッチ画像
             </label>
             <input

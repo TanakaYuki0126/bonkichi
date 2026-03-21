@@ -8,7 +8,7 @@ export default function StickyTitle({ activeIndex }: { activeIndex: number }) {
   const chars = Array.from(text);
   return (
     <div className="fixed top-20 left-10 z-50">
-      <h1 key={activeIndex} className="text-3xl font-bold text-gray-700">
+      <h1 key={activeIndex} className="text-3xl font-bold">
         {chars.map((ch, i) => (
           <span
             key={`${activeIndex}-${i}-${ch}`}

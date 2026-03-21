@@ -34,20 +34,18 @@ export default async function PostPage({
         <Link href={"/diary"} className="text-sm text-gray-500">
           一覧へ戻る
         </Link>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-700 mt-10 mb-6 leading-tight">
+        <h1 className="text-3xl md:text-4xl font-bold  mt-10 mb-6 leading-tight">
           {post.title}
         </h1>
         {post.createdAt && (
-          <p className="text-sm text-gray-600 mb-8">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
             {new Date(post.createdAt).toLocaleDateString("ja-JP")}
           </p>
         )}
         {eyecatchUrl && <FadeInImage src={eyecatchUrl} alt={post.title} />}
 
         <div className="prose prose-gray max-w-none">
-          <p className="whitespace-pre-line text-gray-700 leading-relaxed">
-            {post.content}
-          </p>
+          <p className="whitespace-pre-line leading-relaxed">{post.content}</p>
         </div>
         <div className="absolute top-5 right-5">
           <DeleteButton postId={post.id} />

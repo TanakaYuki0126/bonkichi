@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 function UnderlineLink({
   href,
@@ -36,7 +37,7 @@ export default function Header() {
         open ? "bg-white opacity-90" : ""
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-800">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center text-lg hover:opacity-70 transition gap-1"
@@ -69,6 +70,7 @@ export default function Header() {
               login / ログイン
             </UnderlineLink>
           )}
+          <ThemeToggle />
         </nav>
         <button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>
           <div className="relative w-8 h-8">
