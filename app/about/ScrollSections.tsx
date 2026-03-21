@@ -63,7 +63,7 @@ export default function ScrollSections() {
     return subscribe(({ smoothedScrollY }) => {
       const el = containerRef.current;
       if (!el) return;
-      el.style.transform = `translate3d(-${smoothedScrollY}px, 0, 0)`;
+      el.style.setProperty("--p", smoothedScrollY.toString());
     });
   }, [isDesktop, subscribe]);
 
@@ -75,15 +75,6 @@ export default function ScrollSections() {
         .filter(Boolean)
         .map((el) => (el as HTMLElement).offsetLeft)
         .sort((a, b) => a - b);
-
-      console.log(offsetsRef.current);
-      const parallaxImgs =
-        document.querySelectorAll<HTMLElement>(".parallax-img");
-      parallaxImgs.forEach((img) => {
-        // img.style.transform = `translateX(${500}px)`;
-      });
-
-      console.log(parallaxImgs);
     };
     measure();
     window.addEventListener("resize", measure);
@@ -121,7 +112,9 @@ export default function ScrollSections() {
         {isDesktop && <StickyTitle activeIndex={activeIndex} />}
         <div
           ref={containerRef}
-          className={`flex h-full ${isDesktop ? "flex-row" : "flex-col"}`}
+          className={`scroll-sections-container flex will-change-transform h-full ${
+            isDesktop ? "flex-row" : "flex-col"
+          }`}
         >
           {/* Concept */}
           <Section1

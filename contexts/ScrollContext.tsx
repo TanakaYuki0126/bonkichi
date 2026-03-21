@@ -88,7 +88,7 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
       const nextP = currentP + (targetP - currentP) * damping;
       const nextY = currentY + (targetY - currentY) * damping;
       smoothedProgressRef.current = nextP;
-      smoothedScrollYRef.current = nextY;
+      smoothedScrollYRef.current = Math.round(nextY);
       setSmoothedProgress(nextP);
 
       const frameState: ScrollFrameState = {

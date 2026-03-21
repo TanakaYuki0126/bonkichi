@@ -228,3 +228,7 @@ body::-webkit-scrollbar {
 .parallax-img {
   transform: translate3d(calc((var(--p) - 0.5) * 120px), 0, 0) scale(1.3);
 }
+
+.scroll-sections-container {
+  transform: translate3d(calc((var(--p)) * -1px), 0, 0);
+}
