@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+"use client";
+import React, { useRef, useState } from "react";
 import MobileTitle from "./MobileTitle";
 import DescriptionContent from "./DescriptionContent";
 import { contents as allContents } from "./contents";
 import SectionContainer from "./SectionContainer";
-import Image from "next/image";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 export default function Section({
   ref,
@@ -15,14 +16,25 @@ export default function Section({
   contentIndex: number;
 }) {
   const contents = allContents[contentIndex].items ?? [];
+  const observerTargetRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const displayContents = isDesktop
     ? contents
     : contents.filter((_, i) => i === activeIndex);
+  //要素が画面に現れたときにフェードインアニメーション
+  useIntersectionObserver(
+    observerTargetRef,
+    () => observerTargetRef.current?.classList.add("animate-fadeIn"),
+    { threshold: 0.3 },
+  );
   return (
-    <SectionContainer ref={ref}>
+    <SectionContainer isDesktop={isDesktop} ref={ref}>
       {!isDesktop && (
-        <div className="flex gap-5">
+        <div
+          ref={observerTargetRef}
+          className="flex gap-5 opacity-0"
+          style={{ animationDelay: "500ms" }}
+        >
           {contents.map(({ title }, i) => {
             const active = activeIndex === i;
             return (

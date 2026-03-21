@@ -51,7 +51,7 @@ export default function ScrollSections() {
   }, []);
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768);
+      setIsDesktop(window.innerWidth >= 1024);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -101,7 +101,7 @@ export default function ScrollSections() {
       <div
         className={
           isDesktop
-            ? "sticky top-0 h-screen h-dvh overflow-hidden bg-blob-paper bg-noise-overlay"
+            ? "sticky top-0 h-dvh overflow-hidden bg-blob-paper bg-noise-overlay"
             : "bg-blob-paper bg-noise-overlay"
         }
       >

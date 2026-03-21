@@ -1,16 +1,10 @@
 "use client";
 
-export const titles = [
-  { title: "Story / ストーリー" },
-  { title: "Design / デザイン" },
-  { title: "Living / 暮らし" },
-  { title: "Power / エネルギー" },
-  { title: "Confort / 快適性" },
-  { title: "Base & Mobility / ベース車両" },
-];
+import { contents } from "./contents";
 
 export default function StickyTitle({ activeIndex }: { activeIndex: number }) {
-  const text = titles[activeIndex]?.title ?? "";
+  const titles = contents.map(({ title }) => title);
+  const text = titles[activeIndex] ?? "";
   const chars = Array.from(text);
   return (
     <div className="fixed top-20 left-10 z-50">

@@ -53,6 +53,10 @@ body::-webkit-scrollbar {
   transform-origin: left center;
 }
 
+.is-visible .title-char {
+  animation: titleCharIn 0.6s ease both;
+}
+
 @keyframes blobShift {
   0% {
     background-position:
@@ -82,14 +86,19 @@ body::-webkit-scrollbar {
     mask-size: 0% 0%;
     opacity: 0.6;
   }
+  50% {
+    mask-size: 200% 200%;
+    opacity: 1;
+  }
   100% {
     mask-size: 200% 200%;
     opacity: 1;
+    transform: translateY(-10px);
   }
 }
 
 .animate-circleIn {
-  animation: imageCircleIn 1s both;
+  animation: imageCircleIn 2s both;
   animation-delay: 2s;
   animation-timing-function: ease-in-out;
   will-change: mask-size;
@@ -221,6 +230,11 @@ body::-webkit-scrollbar {
     transform: translateX(0px);
     opacity: 1;
   }
+}
+
+.section-divider.is-visible {
+  animation: appearX 1s both;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .divider-appear {

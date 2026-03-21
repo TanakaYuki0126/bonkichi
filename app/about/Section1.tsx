@@ -11,9 +11,9 @@ export default function Section1({
   ref: React.Ref<HTMLElement>;
 }) {
   return (
-    <SectionContainer ref={ref}>
+    <SectionContainer isDesktop={isDesktop} ref={ref}>
       {!isDesktop && <MobileTitle index={0} />}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 z-40">
         <FadeUpTextLine i={0}>
           <p
             className="underline-grow"

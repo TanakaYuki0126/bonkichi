@@ -9,6 +9,8 @@ export default function TopImageMobile() {
       height={3627}
       width={5455}
       alt="photo_main"
+      className="animate-fadeIn"
+      style={{ animationDelay: "3s" }}
     />
   );
 }
