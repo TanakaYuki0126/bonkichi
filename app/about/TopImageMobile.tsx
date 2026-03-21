@@ -5,10 +5,10 @@ import Image from "next/image";
 export default function TopImageMobile() {
   return (
     <Image
-      src="/about/photo_main.jpg"
+      src="/about/top_image.jpg"
       height={3627}
       width={5455}
-      alt="photo_main"
+      alt="top_image"
       className="animate-fadeIn"
       style={{ animationDelay: "3s" }}
     />
