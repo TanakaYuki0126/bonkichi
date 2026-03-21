@@ -2,7 +2,7 @@
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function DescriptionContent({
   title,
@@ -14,24 +14,6 @@ export default function DescriptionContent({
   isDesktop?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  // useEffect(() => {
-  //   const el = ref.current;
-  //   if (!el) return;
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting) {
-  //         setVisible(true);
-  //       }
-  //     },
-  //     {
-  //       root: null,
-  //       threshold: 0.5, //要素の20%が見えたら
-  //     },
-  //   );
-  //   observer.observe(el);
-  //   return () => observer.disconnect();
-  // }, []);
   useIntersectionObserver(ref, () =>
     ref.current?.classList.add("animate-fadeInTranslateY"),
   );
