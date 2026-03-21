@@ -29,7 +29,7 @@ export default async function PostPage({
   }
 
   return (
-    <div className="min-h-screen h-dvh  py-12 px-4">
+    <div className="min-h-screen py-12 px-4">
       <article className="max-w-3xl mx-auto p-8 md:p-12 relative">
         <Link href={"/diary"} className="text-sm text-gray-500">
           一覧へ戻る
