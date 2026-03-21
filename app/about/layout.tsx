@@ -1,4 +1,5 @@
 import PageFadeIn from "@/components/PageFadeIn";
+import { ScrollProvider } from "@/contexts/ScrollContext";
 
 export default function AboutLayout({
   children,
@@ -8,7 +9,7 @@ export default function AboutLayout({
   return (
     <div>
       <PageFadeIn />
-      {children}
+      <ScrollProvider>{children}</ScrollProvider>
     </div>
   );
 }

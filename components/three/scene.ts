@@ -2,9 +2,8 @@ import * as THREE from "three";
 import { createRoad } from "./road";
 import { loadCar } from "./car";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { createMountain, createMountainGroup } from "./mountain";
+import { createMountainGroup } from "./mountain";
 import gsap from "gsap";
-import GUI from "lil-gui";
 
 function introPlayed() {
   return Boolean(sessionStorage.getItem("introPlayed"));

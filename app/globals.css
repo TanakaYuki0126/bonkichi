@@ -12,6 +12,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-zen: var(--font-zen);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,8 +25,219 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jp), Arial, Helvetica, sans-serif;
 }
 body::-webkit-scrollbar {
   width: 0px;
+}
+
+@keyframes titleCharIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(-4px, 4px, 0) rotateY(90deg);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateY(-10deg);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+  }
+}
+
+.animate-titleCharIn {
+  animation: titleCharIn 480ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  transform-origin: left center;
+}
+
+.is-visible .title-char {
+  animation: titleCharIn 0.6s ease both;
+}
+
+@keyframes blobShift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      100% 100%;
+  }
+  50% {
+    background-position:
+      14% 26%,
+      86% 14%,
+      10% 84%,
+      92% 74%;
+  }
+  100% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      100% 100%;
+  }
+}
+
+@keyframes imageCircleIn {
+  0% {
+    mask-size: 0% 0%;
+    opacity: 0.6;
+  }
+  50% {
+    mask-size: 200% 200%;
+    opacity: 1;
+  }
+  100% {
+    mask-size: 200% 200%;
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-circleIn {
+  animation: imageCircleIn 2s both;
+  animation-delay: 2s;
+  animation-timing-function: ease-in-out;
+  will-change: mask-size;
+  mask-image: radial-gradient(circle, white 50%, transparent 51%);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: radial-gradient(circle, white 50%, transparent 51%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.bg-blob-paper {
+  /* ベーストーン */
+  background-color: #f7f6f2;
+  background-image:
+    radial-gradient(
+      circle at top left,
+      rgba(236, 228, 208, 0.612),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(211, 228, 215, 0.256),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(222, 231, 243, 0.5),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(239, 233, 218, 0.684),
+      transparent 55%
+    );
+  background-size:
+    140% 140%,
+    140% 140%,
+    140% 140%,
+    140% 140%;
+  background-repeat: no-repeat;
+  animation: blobShift 26s ease-in-out infinite alternate;
+}
+
+.bg-noise-overlay {
+  /* position: relative; */
+  /* overflow: hidden; */
+}
+.bg-noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
+  background-image: url("/textures/cardboard-texture.jpg");
+  background-size: 550px 550px;
+}
+
+@keyframes textFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-text {
+  opacity: 0;
+  animation: textFadeUp 1s forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: calc(var(--i) * 0.2s + 1s);
+}
+
+.underline-grow {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-grow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  opacity: 0.6;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineGrow 2s forwards;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-delay: calc(var(--delay) * 1s);
+}
+
+@keyframes lineGrow {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  35% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  65% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+.writing-vertical {
+  writing-mode: sideways-lr;
+  text-orientation: upright;
+}
+
+@keyframes appearX {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.section-divider.is-visible {
+  animation: appearX 1s both;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.divider-appear {
+  animation: appearX 1s both;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 }

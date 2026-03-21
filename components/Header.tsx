@@ -36,7 +36,7 @@ export default function Header() {
         open ? "bg-white opacity-90" : ""
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-700">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-800">
         <Link
           href="/"
           className="flex items-center text-lg hover:opacity-70 transition gap-1"
@@ -91,7 +91,7 @@ export default function Header() {
         </button>
       </div>
       <nav
-        className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen  transition-opacity duration-300 ${
+        className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen h-dvh  transition-opacity duration-300 ${
           open ? "opacity-90" : "opacity-0 pointer-events-none"
         }`}
         style={{ zIndex: -50 }}

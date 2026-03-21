@@ -7,7 +7,7 @@ import { useActionState, useEffect, useRef } from "react";
 export default function ContactPage() {
   const [state, formAction] = useActionState<ContactFormState, FormData>(
     sendContact,
-    {}
+    {},
   );
   const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <>
       <PageFadeIn />
-      <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
+      <div className="min-h-screen h-dvh flex items-center justify-center px-4 pt-20 pb-10">
         <div className="w-full max-w-2xl p-8">
           <h1 className="text-2xl mb-6 text-gray-700 text-center">
             Contact / 連絡
