@@ -9,10 +9,10 @@ export default function TopImage() {
   return (
     <div className="flex items-end absolute bottom-10 right-10 xl:right-20">
       <Image
-        src="/about/photo_main.jpg"
+        src="/about/top_image.jpg"
         height={3627}
         width={5455}
-        alt="photo_main"
+        alt="top_image"
         className="w-[40vw] lg:w-[50vw] rounded-full animate-circleIn transition-transform duration-100"
         style={{
           transform: `translate3d(${translateX}px,0,0)`,

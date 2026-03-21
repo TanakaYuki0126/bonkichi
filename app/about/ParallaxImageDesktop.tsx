@@ -2,6 +2,7 @@
 
 import { useScroll } from "@/contexts/ScrollContext";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export default function ParallaxImageDesktop({
   src,
@@ -10,22 +11,48 @@ export default function ParallaxImageDesktop({
   src: string;
   alt: string;
 }) {
-  const { smoothedProgress } = useScroll();
-  const maxShift = 120;
-  const translateX = (smoothedProgress - 0.5) * 5 * maxShift;
+  const ref = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const { subscribe, smoothedScrollYRef } = useScroll();
+  const widthRef = useRef<number>(0);
+  const leftRef = useRef<number>(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const updateSize = () => {
+      widthRef.current = el.offsetWidth;
+      const rect = el.getBoundingClientRect();
+      leftRef.current = rect.left + smoothedScrollYRef.current;
+    };
+    updateSize();
+    const ro = new ResizeObserver(updateSize);
+    ro.observe(el);
+    const unscribe = subscribe(({ smoothedScrollY }) => {
+      const left = leftRef.current;
+      const width = widthRef.current;
+      const center = left - smoothedScrollY + width / 2;
+      const p =
+        (window.innerWidth + width / 2 - center) / (window.innerWidth + width);
+      const progress = Math.min(Math.max(p, 0), 1);
+      const imageEl = imageRef.current;
+      if (!imageEl) return;
+      imageEl.style.setProperty("--p", progress.toString());
+    });
+    return () => {
+      unscribe();
+      ro.disconnect();
+    };
+  }, [subscribe]);
+
   return (
-    <div className="shrink-0 h-screen h-dvh w-[90vw] relative overflow-hidden">
+    <div ref={ref} className="shrink-0 h-dvh w-[60vw] relative overflow-hidden">
       <Image
+        ref={imageRef}
         src={src}
         alt={alt}
         sizes="100vw"
         fill
-        className="object-cover -z-10"
-        style={{
-          transform: `translate3d(${translateX}px,0,0)`,
-          scale: 1.5,
-          transformOrigin: "bottom",
-        }}
+        className={`object-cover -z-10 parallax-img transform will-change-transform`}
       />
     </div>
   );

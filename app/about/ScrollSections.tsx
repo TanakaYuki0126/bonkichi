@@ -63,7 +63,7 @@ export default function ScrollSections() {
     return subscribe(({ smoothedScrollY }) => {
       const el = containerRef.current;
       if (!el) return;
-      el.style.transform = `translate3d(-${smoothedScrollY}px, 0, 0)`;
+      el.style.setProperty("--p", smoothedScrollY.toString());
     });
   }, [isDesktop, subscribe]);
 
@@ -112,7 +112,9 @@ export default function ScrollSections() {
         {isDesktop && <StickyTitle activeIndex={activeIndex} />}
         <div
           ref={containerRef}
-          className={`flex h-full ${isDesktop ? "flex-row" : "flex-col"}`}
+          className={`scroll-sections-container flex will-change-transform h-full ${
+            isDesktop ? "flex-row" : "flex-col"
+          }`}
         >
           {/* Concept */}
           <Section1
@@ -133,7 +135,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_1.jpg"
+            src="/about/sample_1.jpg"
             alt="photo_1"
           />
           {/* Living */}
@@ -147,7 +149,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_2.jpg"
+            src="/about/sample_2.jpg"
             alt="photo_2"
           />
           {/* Off-grid */}
@@ -161,7 +163,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_3.jpg"
+            src="/about/sample_3.jpg"
             alt="photo_3"
           />
           {/* Confort */}
@@ -175,7 +177,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_4.jpg"
+            src="/about/sample_4.jpg"
             alt="photo_4"
           />
           {/* Base & Mobility */}
