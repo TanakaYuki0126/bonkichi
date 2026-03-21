@@ -75,6 +75,15 @@ export default function ScrollSections() {
         .filter(Boolean)
         .map((el) => (el as HTMLElement).offsetLeft)
         .sort((a, b) => a - b);
+
+      console.log(offsetsRef.current);
+      const parallaxImgs =
+        document.querySelectorAll<HTMLElement>(".parallax-img");
+      parallaxImgs.forEach((img) => {
+        // img.style.transform = `translateX(${500}px)`;
+      });
+
+      console.log(parallaxImgs);
     };
     measure();
     window.addEventListener("resize", measure);
@@ -133,7 +142,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_1.jpg"
+            src="/about/sample_1.jpg"
             alt="photo_1"
           />
           {/* Living */}
@@ -147,7 +156,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_2.jpg"
+            src="/about/sample_2.jpg"
             alt="photo_2"
           />
           {/* Off-grid */}
@@ -161,7 +170,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_3.jpg"
+            src="/about/sample_3.jpg"
             alt="photo_3"
           />
           {/* Confort */}
@@ -175,7 +184,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/photo_sample_4.jpg"
+            src="/about/sample_4.jpg"
             alt="photo_4"
           />
           {/* Base & Mobility */}
