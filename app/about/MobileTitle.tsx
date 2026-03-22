@@ -13,10 +13,7 @@ export default function MobileTitle({ index }: { index: number }) {
     threshold: 0.3,
   });
   return (
-    <h1
-      ref={ref}
-      className="absolute top-20 left-5 text-3xl font-bold text-gray-700"
-    >
+    <h1 ref={ref} className="absolute top-20 left-5 text-3xl font-bold">
       {chars.map((ch, i) => (
         <span
           className="inline-block will-change-transform opacity-0 title-char"
