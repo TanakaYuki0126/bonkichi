@@ -132,6 +132,7 @@ export default function JustifiedGallery({ photos }: { photos: Photo[] }) {
           </button>
         );
       })}
+      {/* モーダル */}
       <div
         className={`fixed inset-0 touch-none bg-black/80 flex flex-col items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 ${
           selectedPhoto ? "opacity-100" : "opacity-0 pointer-events-none"

@@ -1,11 +1,11 @@
 import { db } from "@/lib/db";
 import { posts } from "@/lib/schema";
 import { and, eq } from "drizzle-orm";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import DeleteButton from "./DeleteButton";
 import { getImageUrl } from "@/app/actions/getImageUrl";
 import FadeInImage from "./FadeInImage";
+import BackButton from "./BackButton";
 
 export default async function PostPage({
   params,
@@ -31,9 +31,7 @@ export default async function PostPage({
   return (
     <div className="min-h-screen py-12 px-4">
       <article className="max-w-3xl mx-auto p-8 md:p-12 relative">
-        <Link href={"/diary"} className="text-sm text-gray-500">
-          一覧へ戻る
-        </Link>
+        <BackButton />
         <h1 className="text-3xl md:text-4xl font-bold  mt-10 mb-6 leading-tight">
           {post.title}
         </h1>
