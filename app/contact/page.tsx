@@ -20,9 +20,7 @@ export default function ContactPage() {
       <PageFadeIn />
       <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10">
         <div className="w-full max-w-2xl p-8">
-          <h1 className="text-2xl mb-6 text-gray-700 text-center">
-            Contact / 連絡
-          </h1>
+          <h1 className="text-2xl mb-6 text-center">Contact / 連絡</h1>
           {state?.message && (
             <p
               className={`${
@@ -34,7 +32,7 @@ export default function ContactPage() {
           )}
           <form action={formAction} className="space-y-6" ref={formRef}>
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                 お名前
               </label>
               <input
@@ -42,14 +40,14 @@ export default function ContactPage() {
                 name="name"
                 required
                 defaultValue={state?.rawData?.name ?? ""}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="input-base"
               />
               {state?.errors?.name && (
                 <p className="text-red-500 text-xs">{state.errors.name}</p>
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                 メールアドレス
               </label>
               {state?.errors?.email && (
@@ -60,11 +58,11 @@ export default function ContactPage() {
                 name="email"
                 required
                 defaultValue={state?.rawData?.email ?? ""}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="input-base"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
+              <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                 本文
               </label>
               {state?.errors?.message && (
@@ -74,7 +72,7 @@ export default function ContactPage() {
                 name="message"
                 required
                 defaultValue={state?.rawData?.message ?? ""}
-                className="w-full rounded-lg border h-80 border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-y"
+                className="input-base h-80  resize-y"
               />
             </div>
             {/* honeypot */}

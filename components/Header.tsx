@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 function UnderlineLink({
   href,
@@ -32,11 +33,11 @@ export default function Header() {
   if (pathname === "/") return;
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 h-16 ${
-        open ? "bg-white opacity-90" : ""
+      className={`fixed top-0 left-0 w-full z-50 min-h-16 transition ${
+        open ? "bg-white dark:bg-gray-800 opacity-90" : "pointer-events-none"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between text-gray-800">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center text-lg hover:opacity-70 transition gap-1"
@@ -69,30 +70,35 @@ export default function Header() {
               login / ログイン
             </UnderlineLink>
           )}
+          <ThemeToggle />
         </nav>
-        <button className="md:hidden" onClick={() => setOpen((prev) => !prev)}>
+        <button
+          className="md:hidden pointer-events-auto"
+          onClick={() => setOpen((prev) => !prev)}
+        >
           <div className="relative w-8 h-8">
             <span
-              className={`absolute bg-gray-700 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
+              className={`absolute bg-gray-700 dark:bg-gray-200 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
                 open ? "rotate-45 translate-y-0" : "-translate-y-2"
               }`}
             ></span>
             <span
-              className={`absolute bg-gray-700 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
+              className={`absolute bg-gray-700 dark:bg-gray-200 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
                 open ? "opacity-0" : ""
               }`}
             ></span>
             <span
-              className={`absolute bg-gray-700 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
-                open ? "-rotate-45 translate-y-0" : "translate-y-2"
+              className={`absolute bg-gray-700 dark:bg-gray-200 left-0 top-1/2 h-0.5 w-8 transition-all duration-300 ${
+                open ? "-rotate-45 translate-y-0 opacity-90" : "translate-y-2"
               }`}
             ></span>
           </div>
         </button>
       </div>
+      {/* モバイル版 */}
       <nav
-        className={`px-6 flex flex-col items-center gap-3 md:hidden  bg-white h-screen h-dvh  transition-opacity duration-300 ${
-          open ? "opacity-90" : "opacity-0 pointer-events-none"
+        className={`px-6 flex flex-col items-center gap-3 md:hidden h-dvh transition-opacity duration-300 ${
+          open ? "touch-none" : "opacity-0 pointer-events-none"
         }`}
         style={{ zIndex: -50 }}
       >
@@ -117,6 +123,7 @@ export default function Header() {
             login / ログイン
           </UnderlineLink>
         )}
+        <ThemeToggle />
       </nav>
     </header>
   );

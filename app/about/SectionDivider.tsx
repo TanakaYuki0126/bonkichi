@@ -16,7 +16,7 @@ export default function SectionDivider({
   return (
     <div
       ref={ref}
-      className={`writing-vertical text-9xl text-center text-gray-700 section-divider opacity-0`}
+      className={`writing-vertical text-9xl text-center text-gray-700 dark:text-gray-500 section-divider opacity-0`}
     >
       {children}
     </div>
