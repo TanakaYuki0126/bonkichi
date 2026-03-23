@@ -37,7 +37,7 @@ export default function Header() {
         open ? "bg-white dark:bg-gray-800 opacity-90" : "pointer-events-none"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between pointer-events-auto">
+      <div className="max-w-full mx-auto px-6 h-16 flex items-center justify-between pointer-events-auto">
         <Link
           href="/"
           className="flex items-center text-lg hover:opacity-70 transition gap-1"
