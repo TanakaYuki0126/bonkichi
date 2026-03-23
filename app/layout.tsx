@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" style={{ overscrollBehavior: "none" }}>
+    <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased transition-colors`}
       >
