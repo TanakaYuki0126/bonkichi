@@ -153,7 +153,7 @@ export default function ScrollSections() {
             alt="photo_2"
           />
           {/* Off-grid */}
-          {isDesktop && <SectionDivider>OFF GRID</SectionDivider>}
+          {isDesktop && <SectionDivider>POWER</SectionDivider>}
           <Section
             ref={(el) => {
               itemRefs.current[3] = el;
@@ -181,6 +181,7 @@ export default function ScrollSections() {
             alt="photo_4"
           />
           {/* Base & Mobility */}
+          {isDesktop && <SectionDivider>BASE</SectionDivider>}
           <Section
             ref={(el) => {
               itemRefs.current[5] = el;
