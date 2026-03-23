@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="ja" style={{ overscrollBehavior: "none" }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased transition-colors min-h-[100dvh]`}
+        className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased transition-colors`}
       >
         <Providers>
           <Header />
