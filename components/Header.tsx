@@ -18,7 +18,7 @@ function UnderlineLink({
   return (
     <Link
       href={href}
-      className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+      className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
       onClick={onClick}
     >
       {children}
@@ -37,10 +37,10 @@ export default function Header() {
         open ? "bg-white dark:bg-gray-800 opacity-90" : "pointer-events-none"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between pointer-events-auto">
         <Link
           href="/"
-          className="flex items-center text-lg hover:opacity-70 transition gap-1 pointer-events-auto"
+          className="flex items-center text-lg hover:opacity-70 transition gap-1"
         >
           <Image
             alt="logo"
