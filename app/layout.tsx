@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
@@ -26,6 +26,12 @@ export const metadata: Metadata = {
   description: "bonkichi",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="ja" style={{ overscrollBehavior: "none" }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased relative transition-colors`}
+        className={`${geistSans.variable} ${geistMono.variable} ${noto.variable} antialiased transition-colors min-h-[100dvh]`}
       >
         <Providers>
           <Header />

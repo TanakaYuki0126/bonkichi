@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import ThreeCanvas from "@/components/three/ThreeCanvas";
 
 export default function LpLayout({
