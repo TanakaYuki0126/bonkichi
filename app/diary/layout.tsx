@@ -1,4 +1,4 @@
-import AdminFab from "./AdminFab";
+import AdminFab from "../../components/AdminFab";
 
 export default function DiaryLayout({
   children,

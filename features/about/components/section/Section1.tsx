@@ -1,7 +1,7 @@
-import FadeUpTextLine from "./FadeUpTextLine";
-import MobileTitle from "./MobileTitle";
+import FadeUpTextLine from "../text/FadeUpTextLine";
+import MobileTitle from "../text/MobileTitle";
 import SectionContainer from "./SectionContainer";
-import TopImage from "./TopImage";
+import TopImage from "../image/TopImage";
 
 export default function Section1({
   isDesktop,

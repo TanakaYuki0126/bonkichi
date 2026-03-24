@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { clamp } from "../lib/scrollMath";
+import { clamp } from "@/features/about/lib/scrollMath";
 
 export default function ParallaxImageMobile({
   src,

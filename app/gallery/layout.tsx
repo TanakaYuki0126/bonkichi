@@ -1,5 +1,5 @@
-import PageFadeIn from "@/components/PageFadeIn";
-import AdminFab from "../diary/AdminFab";
+import PageFadeIn from "@/components/Fade/PageFadeIn";
+import AdminFab from "../../components/AdminFab";
 
 export default function AboutLayout({
   children,

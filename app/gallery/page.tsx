@@ -1,12 +1,12 @@
-import JustifiedGallery from "@/components/JustifiedGallery";
-import { getGalleryPhotos } from "../actions/getGalleryPhotos";
+import JustifiedGallery from "@/features/gallery/components/JustifiedGallery";
+import { getGalleryPhotosService } from "../../features/gallery/services/getGalleryPhotos";
 import { Suspense } from "react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 
 export default async function AboutPage() {
-  const photos = await getGalleryPhotos();
+  const photos = await getGalleryPhotosService();
   const session = await getServerSession(authOptions);
   return (
     <>

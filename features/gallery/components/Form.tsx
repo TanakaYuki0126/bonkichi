@@ -3,7 +3,7 @@ import { uploadGalleryPhoto } from "@/app/actions/uploadGalleryPhoto";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { categories } from "../categories";
+import { categories } from "@/features/gallery/data/categories";
 
 export default function NewGalleryForm() {
   const { pending } = useFormStatus();

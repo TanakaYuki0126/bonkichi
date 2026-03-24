@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../ProgressBar";
 import { useScroll } from "@/contexts/ScrollContext";
-import StickyTitle from "./StickyTitle";
+import StickyTitle from "../text/StickyTitle";
 import SectionDivider from "./SectionDivider";
-import TopImageMobile from "./TopImageMobile";
-import ParallaxImage from "./ParallaxImage";
+import TopImageMobile from "../image/TopImageMobile";
+import ParallaxImage from "../image/ParallaxImage";
 import Section1 from "./Section1";
 import Section from "./Section";
 
