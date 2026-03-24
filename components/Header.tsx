@@ -55,7 +55,7 @@ export default function Header() {
           <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
           <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
           <UnderlineLink href="/contact">contact / 連絡</UnderlineLink>
-          {session?.user ? (
+          {session?.user && (
             <button
               className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
               onClick={(e) => {
@@ -65,10 +65,6 @@ export default function Header() {
             >
               logout from {session?.user?.name}
             </button>
-          ) : (
-            <UnderlineLink href="/api/auth/signin">
-              login / ログイン
-            </UnderlineLink>
           )}
           <ThemeToggle />
         </nav>
@@ -114,13 +110,9 @@ export default function Header() {
         <UnderlineLink href="/contact" onClick={() => setOpen(false)}>
           contact / 連絡
         </UnderlineLink>
-        {session?.user ? (
+        {session?.user && (
           <UnderlineLink href="/api/auth/signin">
             logout from {session?.user?.name}
-          </UnderlineLink>
-        ) : (
-          <UnderlineLink href="/api/auth/signin">
-            login / ログイン
           </UnderlineLink>
         )}
         <ThemeToggle />
