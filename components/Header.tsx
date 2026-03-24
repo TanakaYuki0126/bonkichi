@@ -97,19 +97,12 @@ export default function Header() {
           open ? "touch-none" : "opacity-0 pointer-events-none"
         }`}
         style={{ zIndex: -50 }}
+        onClick={() => setOpen(false)}
       >
-        <UnderlineLink href="/about" onClick={() => setOpen(false)}>
-          about / 紹介
-        </UnderlineLink>
-        <UnderlineLink href="/gallery" onClick={() => setOpen(false)}>
-          gallery / ギャラリー
-        </UnderlineLink>
-        <UnderlineLink href="/diary" onClick={() => setOpen(false)}>
-          diary / 日記
-        </UnderlineLink>
-        <UnderlineLink href="/contact" onClick={() => setOpen(false)}>
-          contact / 連絡
-        </UnderlineLink>
+        <UnderlineLink href="/about">about / 紹介</UnderlineLink>
+        <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
+        <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
+        <UnderlineLink href="/contact">contact / 連絡</UnderlineLink>
         {session?.user && (
           <UnderlineLink href="/api/auth/signin">
             logout from {session?.user?.name}
