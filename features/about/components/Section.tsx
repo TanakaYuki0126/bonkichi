@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import MobileTitle from "./MobileTitle";
 import DescriptionContent from "./DescriptionContent";
-import { contents as allContents } from "./contents";
+import { contents as allContents } from "../data/contents";
 import SectionContainer from "./SectionContainer";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 

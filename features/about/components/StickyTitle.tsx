@@ -1,6 +1,6 @@
 "use client";
 
-import { contents } from "./contents";
+import { contents } from "../data/contents";
 
 export default function StickyTitle({ activeIndex }: { activeIndex: number }) {
   const titles = contents.map(({ title }) => title);

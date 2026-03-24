@@ -1,9 +1,5 @@
-import ScrollSections from "./ScrollSections";
+import ScrollSections from "../../features/about/components/ScrollSections";
 
 export default function AboutPage() {
-  return (
-    <div>
-      <ScrollSections />
-    </div>
-  );
+  return <ScrollSections />;
 }
