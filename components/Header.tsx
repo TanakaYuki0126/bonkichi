@@ -111,7 +111,7 @@ export default function Header() {
         <UnderlineLink href="/diary" onClick={() => setOpen(false)}>
           diary / 日記
         </UnderlineLink>
-        <UnderlineLink href="/gallery" onClick={() => setOpen(false)}>
+        <UnderlineLink href="/contact" onClick={() => setOpen(false)}>
           contact / 連絡
         </UnderlineLink>
         {session?.user ? (
