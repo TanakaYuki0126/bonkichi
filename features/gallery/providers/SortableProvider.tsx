@@ -1,7 +1,7 @@
 "use client";
 
-import { updateDisplayOrders } from "@/app/actions/updateDisplayOrders";
-import { Photo } from "@/components/JustifiedGallery";
+import { updateDisplayOrders } from "@/features/gallery/services/updateDisplayOrders";
+import { Photo } from "@/features/gallery/components/JustifiedGallery";
 import { DragDropProvider } from "@dnd-kit/react";
 import { isSortable } from "@dnd-kit/react/sortable";
 import { useRef } from "react";

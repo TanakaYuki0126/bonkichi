@@ -1,7 +1,7 @@
 "use client";
-import PageFadeIn from "@/components/PageFadeIn";
+import PageFadeIn from "@/components/Fade/PageFadeIn";
 import { ContactFormState, sendContact } from "../actions/sendContact";
-import { SubmitButton } from "./SubmitButton";
+import { SubmitButton } from "@/features/contact/components/SubmitButton";
 import { useActionState, useEffect, useRef } from "react";
 
 export default function ContactPage() {

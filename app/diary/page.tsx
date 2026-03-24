@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { getPostsWithImageUrls } from "../actions/getPostsWithImageUrl";
-import PageFadeIn from "@/components/PageFadeIn";
-import FadeInImage from "./[slug]/FadeInImage";
+import PageFadeIn from "@/components/Fade/PageFadeIn";
+import FadeInImage from "../../features/diary/components/FadeInImage";
+import { getPostsSerivce } from "@/features/diary/services/getPostsService";
 
 export const revalidate = 60;
 
 export default async function diaryPage() {
-  const posts = await getPostsWithImageUrls();
+  const posts = await getPostsSerivce();
 
   return (
     <>

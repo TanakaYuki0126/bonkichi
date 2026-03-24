@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { clamp } from "@/features/about/lib/scrollMath";
 
 export default function ParallaxImageMobile({
   src,
@@ -23,7 +24,7 @@ export default function ParallaxImageMobile({
       const p =
         (window.innerHeight + rect.height / 2 - centerY) /
         (window.innerHeight + rect.height);
-      const clamped = Math.max(Math.min(p, 1), 0);
+      const clamped = clamp(p);
       const imageEl = imageRef.current;
       if (!imageEl) return;
       imageEl.style.setProperty("--p", clamped.toString());

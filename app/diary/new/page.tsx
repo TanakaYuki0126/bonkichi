@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import Form from "./Form";
+import Form from "@/features/diary/components/Form";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 

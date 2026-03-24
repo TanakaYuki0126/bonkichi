@@ -1,7 +1,7 @@
 "use client";
 
-import PageFade from "@/components/PageFade";
-import { startExit } from "@/components/three/animate";
+import PageFade from "@/components/Fade/PageFade";
+import { startExit } from "@/features/lp/three/animate";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

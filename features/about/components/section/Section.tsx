@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef, useState } from "react";
-import MobileTitle from "./MobileTitle";
-import DescriptionContent from "./DescriptionContent";
-import { contents as allContents } from "./contents";
+import MobileTitle from "../text/MobileTitle";
+import DescriptionContent from "../text/DescriptionContent";
+import { contents as allContents } from "@/features/about/data/contents";
 import SectionContainer from "./SectionContainer";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 

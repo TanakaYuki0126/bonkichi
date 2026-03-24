@@ -1,7 +1,7 @@
 "use client";
 
 import { useScroll } from "@/contexts/ScrollContext";
-import { useParallax } from "@/hooks/useParallax";
+import { useParallax } from "@/features/about/hooks/useParallax";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 

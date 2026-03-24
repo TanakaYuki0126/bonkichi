@@ -2,6 +2,7 @@
 
 import { useScroll } from "@/contexts/ScrollContext";
 import { MutableRefObject, useEffect, useRef } from "react";
+import { clamp } from "../lib/scrollMath";
 
 export function useParallax({
   containerRef,
@@ -30,7 +31,7 @@ export function useParallax({
       const center = left - smoothedScrollY + width / 2;
       const p =
         (window.innerWidth + width / 2 - center) / (window.innerWidth + width);
-      const progress = Math.min(Math.max(p, 0), 1);
+      const progress = clamp(p);
       if (targetRef?.current) {
         const parallaxEl = targetRef.current;
         if (!parallaxEl) return;

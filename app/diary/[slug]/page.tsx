@@ -2,10 +2,10 @@ import { db } from "@/lib/db";
 import { posts } from "@/lib/schema";
 import { and, eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
-import DeleteButton from "./DeleteButton";
-import { getImageUrl } from "@/app/actions/getImageUrl";
-import FadeInImage from "./FadeInImage";
-import BackButton from "./BackButton";
+import DeleteButton from "../../../features/diary/components/DeleteButton";
+import { getPublicUrl } from "@/lib/supabase/getPublicUrl";
+import FadeInImage from "../../../features/diary/components/FadeInImage";
+import BackButton from "../../../features/diary/components/BackButton";
 
 export default async function PostPage({
   params,
@@ -25,7 +25,7 @@ export default async function PostPage({
   }
   let eyecatchUrl: string | null = null;
   if (post.eyecatchFileName) {
-    eyecatchUrl = await getImageUrl(post.eyecatchFileName);
+    eyecatchUrl = await getPublicUrl(post.eyecatchFileName, "blog-images");
   }
 
   return (

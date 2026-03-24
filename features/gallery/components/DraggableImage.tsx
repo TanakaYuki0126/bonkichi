@@ -1,7 +1,7 @@
 "use client";
 import { useSortable } from "@dnd-kit/react/sortable";
 import Image from "next/image";
-import { Photo } from "@/components/JustifiedGallery";
+import { Photo } from "@/features/gallery/components/JustifiedGallery";
 
 export default function DraggableImage({
   photo,

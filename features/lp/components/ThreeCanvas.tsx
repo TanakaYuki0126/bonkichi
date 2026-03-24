@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { initScene } from "./scene";
-import { animate, resetExit } from "./animate";
+import { initScene } from "../three/scene";
+import { animate, resetExit } from "../three/animate";
 
 export default function ThreeCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);

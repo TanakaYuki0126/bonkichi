@@ -1,4 +1,4 @@
-import PageFadeIn from "@/components/PageFadeIn";
+import PageFadeIn from "@/components/Fade/PageFadeIn";
 import { ScrollProvider } from "@/contexts/ScrollContext";
 
 export default function AboutLayout({

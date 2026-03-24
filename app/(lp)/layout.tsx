@@ -1,4 +1,4 @@
-import ThreeCanvas from "@/components/three/ThreeCanvas";
+import ThreeCanvas from "@/features/lp/components/ThreeCanvas";
 
 export default function LpLayout({
   children,

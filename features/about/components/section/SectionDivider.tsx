@@ -1,7 +1,7 @@
 "use client";
 
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { useParallax } from "@/hooks/useParallax";
+import { useParallax } from "@/features/about/hooks/useParallax";
 import { useRef } from "react";
 
 export default function SectionDivider({

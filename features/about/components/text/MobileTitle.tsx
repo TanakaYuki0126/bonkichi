@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { contents } from "./contents";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { contents } from "@/features/about/data/contents";
 
 export default function MobileTitle({ index }: { index: number }) {
   const ref = useRef<HTMLHeadingElement>(null);
