@@ -64,11 +64,11 @@ export default function Page() {
           <LandingLink href="/about" onClick={handleClick("/about")}>
             about / 紹介
           </LandingLink>
-          <LandingLink href="/diary" onClick={handleClick("diary")}>
-            diary / 日誌
-          </LandingLink>
           <LandingLink href="/gallery" onClick={handleClick("/gallery")}>
-            gallery / 写真
+            gallery / ギャラリー
+          </LandingLink>
+          <LandingLink href="/diary" onClick={handleClick("diary")}>
+            diary / 日記
           </LandingLink>
           <LandingLink href="/contact" onClick={handleClick("/contact")}>
             contact / 連絡
