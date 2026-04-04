@@ -6,6 +6,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 
+import { FaInstagram } from "react-icons/fa";
+import { AiOutlineYoutube } from "react-icons/ai";
+import YouTubeLink from "@/features/about/components/Link/YouTubeLink";
+import InstagramLink from "@/features/about/components/Link/InstagramLink";
+
 function UnderlineLink({
   href,
   children,
@@ -55,6 +60,8 @@ export default function Header() {
           <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
           <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
           <UnderlineLink href="/contact">contact / 連絡</UnderlineLink>
+          <YouTubeLink />
+          <InstagramLink />
           {session?.user && (
             <button
               className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
@@ -103,6 +110,10 @@ export default function Header() {
         <UnderlineLink href="/gallery">gallery / ギャラリー</UnderlineLink>
         <UnderlineLink href="/diary">diary / 日記</UnderlineLink>
         <UnderlineLink href="/contact">contact / 連絡</UnderlineLink>
+        <div className="flex items-center justify-center gap-3">
+          <YouTubeLink />
+          <InstagramLink />
+        </div>
         {session?.user && (
           <UnderlineLink href="/api/auth/signin">
             logout from {session?.user?.name}

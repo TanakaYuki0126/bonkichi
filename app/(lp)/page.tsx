@@ -5,6 +5,10 @@ import { startExit } from "@/features/lp/three/animate";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaInstagram } from "react-icons/fa";
+import { AiOutlineYoutube } from "react-icons/ai";
+import YouTubeLink from "@/features/about/components/Link/YouTubeLink";
+import InstagramLink from "@/features/about/components/Link/InstagramLink";
 
 function LandingLink({
   children,
@@ -73,6 +77,10 @@ export default function Page() {
           <LandingLink href="/contact" onClick={handleClick("/contact")}>
             contact / 連絡
           </LandingLink>
+        </div>
+        <div className="text-white fixed bottom-[30px] gap-3 flex justify-center items-center w-full">
+          <YouTubeLink />
+          <InstagramLink />
         </div>
       </div>
     </main>
