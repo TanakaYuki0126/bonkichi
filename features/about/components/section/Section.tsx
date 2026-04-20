@@ -58,6 +58,7 @@ export default function Section({
             key={content.title}
             title={content.title}
             isDesktop={isDesktop}
+            images={content.images}
           >
             {content.description.map((description) => (
               <p key={description}>{description}</p>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 export default function YouTubeLink() {

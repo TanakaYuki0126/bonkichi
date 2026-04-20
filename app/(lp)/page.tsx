@@ -78,7 +78,7 @@ export default function Page() {
             contact / 連絡
           </LandingLink>
         </div>
-        <div className="text-white fixed bottom-[30px] gap-3 flex justify-center items-center w-full">
+        <div className="text-white fixed bottom-[30px] justify-start pl-[20] gap-3 flex md:justify-center md:items-center w-full">
           <YouTubeLink />
           <InstagramLink />
         </div>

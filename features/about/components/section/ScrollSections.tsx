@@ -135,7 +135,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/sample_1.jpg"
+            src="/about/sakura.jpg"
             alt="photo_1"
           />
           {/* Living */}
@@ -149,8 +149,8 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/sample_2.jpg"
-            alt="photo_2"
+            src="/about/window.jpg"
+            alt="guitar"
           />
           {/* Off-grid */}
           {isDesktop && <SectionDivider>POWER</SectionDivider>}
@@ -163,8 +163,8 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/sample_3.jpg"
-            alt="photo_3"
+            src="/about/sunset.jpg"
+            alt="lamp"
           />
           {/* Confort */}
           {isDesktop && <SectionDivider>CONFORT</SectionDivider>}
@@ -177,7 +177,7 @@ export default function ScrollSections() {
           />
           <ParallaxImage
             isDesktop={isDesktop}
-            src="/about/sample_4.jpg"
+            src="/about/ine.jpg"
             alt="photo_4"
           />
           {/* Base & Mobility */}
