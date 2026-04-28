@@ -61,7 +61,7 @@ export default function Page() {
             className="justify-center
           text-xl tracking-[0.3em] text-white text-center text-shadow-md"
           >
-            small cabin, big journey
+            small cabin, slow journey
           </Link>
         </div>
         <div className="fixed top-3/4 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">

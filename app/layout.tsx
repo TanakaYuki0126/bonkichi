@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "small cabin, big journey",
+  title: "small cabin, slow journey",
   description: "bonkichi",
 };
 
