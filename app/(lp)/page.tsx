@@ -5,8 +5,6 @@ import { startExit } from "@/features/lp/three/animate";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FaInstagram } from "react-icons/fa";
-import { AiOutlineYoutube } from "react-icons/ai";
 import YouTubeLink from "@/features/about/components/Link/YouTubeLink";
 import InstagramLink from "@/features/about/components/Link/InstagramLink";
 
@@ -64,7 +62,7 @@ export default function Page() {
             small cabin, slow journey
           </Link>
         </div>
-        <div className="fixed top-3/4 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
+        <div className="fixed bottom-[70px] md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
           <LandingLink href="/about" onClick={handleClick("/about")}>
             about / 紹介
           </LandingLink>
@@ -78,7 +76,7 @@ export default function Page() {
             contact / 連絡
           </LandingLink>
         </div>
-        <div className="text-white fixed bottom-[30px] justify-start pl-[20] gap-3 flex md:justify-center md:items-center w-full">
+        <div className="text-white fixed bottom-[30px] justify-start pl-[20] gap-5 flex md:justify-center md:items-center w-full">
           <YouTubeLink />
           <InstagramLink />
         </div>
