@@ -17,7 +17,7 @@ export default function LandingMenu() {
       </div>
       <div className="fixed top-30 md:top-1/4 left-5 md:left-20 flex flex-col gap-5  pointer-events-none">
         <Link href="/diary">about / 紹介</Link>
-        <Link href="/diary">diary / 日誌</Link>
+        <Link href="/diary">diary / 日記</Link>
         <Link href="/diary">gallery / 写真</Link>
         <Link href="/diary">items / アイテム</Link>
       </div>
