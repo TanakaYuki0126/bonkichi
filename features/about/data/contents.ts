@@ -29,7 +29,7 @@ export const contents = [
           "ドアの外側には、小さなポーチを設けています。",
           "夜にはダウンライトの温かい光が灯ります。",
         ],
-        images: { count: 1, name: "door" },
+        images: { count: 2, name: "door" },
       },
     ],
   },
