@@ -12,7 +12,7 @@ export function loadCar(scene: THREE.Scene): CarResult {
   const carGroup = new THREE.Group();
 
   loader.load(
-    "models/bongo.glb",
+    "models/bongo_20260712_03.glb",
     (gltf) => {
       const model = gltf.scene;
       model.traverse((obj) => {

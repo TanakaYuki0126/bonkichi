@@ -7,7 +7,7 @@ import { useScroll } from "@/contexts/ScrollContext";
 
 function Model() {
   const { smoothedProgressRef } = useScroll();
-  const { scene } = useGLTF("/models/bongo.glb");
+  const { scene } = useGLTF("/models/bongo_20260712_03.glb");
   const ref = useRef<THREE.Object3D | null>(null);
   useFrame(({ camera }) => {
     const progress = smoothedProgressRef.current;
