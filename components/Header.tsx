@@ -51,7 +51,7 @@ export default function Header() {
             alt="logo"
             width={50}
             height={50}
-            src="/bonkichi.svg"
+            src="/logo.svg"
             className="logo"
           />
         </Link>
